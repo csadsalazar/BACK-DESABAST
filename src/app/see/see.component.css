@@ -1,0 +1,40 @@
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Número de líneas visibles */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+}
+
+.card-text.full {
+  display: block;
+  -webkit-line-clamp: unset;
+}
+
+.text-container {
+  position: relative;
+}
+
+.text-container .more-link {
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+  color: #007bff;
+  margin-top: 10px;
+}
+
+.text-container .more-link::after {
+  content: '...';
+  display: inline;
+}
+
+#producto #expediente  {
+  display: inline;
+  margin-left: 20rem;
+}
+
+.text-left {
+  text-align: left;
+}

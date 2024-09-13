@@ -1,0 +1,56 @@
+.card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Número de líneas visibles */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+  }
+
+  .card-text.full {
+    display: block;
+    -webkit-line-clamp: unset;
+  }
+
+  .text-container {
+    position: relative;
+  }
+
+  .text-container .more-link {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 10px;
+  }
+  
+  .text-container .more-link .fa-chevron-down,
+  .text-container .more-link .fa-chevron-up {
+    display: none;
+  }
+
+  .text-container .more-link.hide .fa-chevron-down {
+    display: inline;
+  }
+
+  .text-container .more-link.show .fa-chevron-up {
+    display: inline;
+  }
+
+  .search-wrapper {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .header-btn {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+  }
+
+  .mb-4 bg-primary text-white{
+    border-radius: 10px;
+
+  }

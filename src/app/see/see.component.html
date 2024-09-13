@@ -1,0 +1,121 @@
+<div class="p-2 p-md-2 p-xl-3">
+    <div class="container">
+      <div class="mb-4 bg-primary text-white" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); border-radius: 10px">
+        <div class="container">
+          <h4 class="text-left text-start"><%= outfstock.getProduct() %></h4>
+          <h4 class="text-left text-end"><%= outfstock.getRecord() %></h4>
+          <p class="text-left"><%= outfstock.getAtcDescription() %>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quae dolores enim sed molestiae eius cum voluptatum ex explicabo ullam, in dolore id consectetur iusto suscipit laboriosam vel aspernatur asperiores!</p>
+        </div>
+  </div>
+</div>
+
+  <section class="p-2 p-md-2 p-xl-3">
+      <div class="container">
+          <h4 class="text-left">Resumen general</h4>
+          <p class="text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. At quae dolores enim sed molestiae eius cum voluptatum ex explicabo ullam, in dolore id consectetur iusto suscipit laboriosam vel aspernatur asperiores!</p>
+        </div>
+
+    <div class="container">
+      <h4 class="text-left">Descripción del producto</h4>
+      <hr>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <h4 class="text-left">Grupo Terapeutico</h4>
+          <p class="text-left"><%= outfstock.getTherapeuticGroup() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Principio activo</h4>
+          <p class="text-left"><%= outfstock.getActivePrinciple() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Forma farmaceutica</h4>
+          <p class="text-left"><%= outfstock.getPharmaceuticalForm() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">ATC</h4>
+          <p class="text-left"><%= outfstock.getAtc() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Estado</h4>
+          <p class="text-left"><%= outfstock.getRegistrationStatus() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Titular</h4>
+          <p class="text-left"><%= outfstock.getHolder() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Concentración</h4>
+          <p class="text-left">*<%= outfstock.getActivePrinciple() %></p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="p-2 p-md-2 p-xl-3">
+    <div class="container">
+      <h4 class="text-left">Información de disponibilidad de medicamentos</h4>
+      <hr>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <h4 class="text-left">Fecha Reporte</h4>
+          <p class="text-left"><%= outfstock.getReportDate() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Cont abastecimiento</h4>
+          <p class="text-left"><%= outfstock.getContactAbast() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Estado RS</h4>
+          <p class="text-left"><%= outfstock.getRsStatus() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Canal</h4>
+          <p class="text-left"><%= outfstock.getChannel() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Ventas UMD 1</h4>
+          <p class="text-left"><%= outfstock.getYearOne() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Ventas UMD 2</h4>
+          <p class="text-left"><%= outfstock.getYearTwo() %></p>
+        </div>      
+        <div class="col-md-4">
+          <h4 class="text-left">Capacidad maxima UMD</h4>
+          <p class="text-left"><%= outfstock.getCapMax() %></p>
+        </div>        
+        <div class="col-md-4">
+          <h4 class="text-left">Estado actual</h4>
+          <p class="text-left"><%= outfstock.getCurrentStatus() %></p>
+        </div>        
+        <div class="col-md-4">
+          <h4 class="text-left">Primer mes de reporte</h4>
+          <p class="text-left"><%= outfstock.getValueOne() %></p>
+        </div>        
+        <div class="col-md-4">
+          <h4 class="text-left">Segundo mes</h4>
+          <p class="text-left">Producto<%= outfstock.getValueTwo() %></p>
+        </div>        
+        <div class="col-md-4">
+          <h4 class="text-left">Tercer mes</h4>
+          <p class="text-left">Producto<%= outfstock.getValueThree() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Cuarto mes</h4>
+          <p class="text-left">Producto<%= outfstock.getValueFour() %></p>
+        </div>
+        <div class="col-md-4">
+          <h4 class="text-left">Razones no comercializión setReasonsNotTrade</h4>
+          <p class="text-left">Desplegable con otra opción-</p>
+        </div>       
+      </div>
+    </div>
+  </section> 
+
+  <section class="p-2 p-md-2 p-xl-3">
+  <div class="container">
+    <h4 class="text-left">Resumen</h4>
+    <hr>
+    <h4 class="text-left">Resumen de producto</h4>
+    <p class="text-left"><%= outfstock.getSummary() %>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quae dolores enim sed molestiae eius cum voluptatum ex explicabo ullam, in dolore id consectetur iusto suscipit laboriosam vel aspernatur asperiores!</p>
+  </div>
+  </section>

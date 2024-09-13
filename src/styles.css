@@ -1,1 +1,61 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+#options{
+    background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
+    }
+
+    .badge bg-primary{
+      background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
+    }
+
+  .footer{
+    background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
+    color:white;
+    
+    .links{
+      ul {list-style-type: none;}
+      li a{
+        color: white;
+        transition: color .2s;
+        &:hover{
+          text-decoration:none;
+          color: aliceblue;
+          }
+      }
+    }  
+    .copyright p{border-top:1px solid;} 
+  }
+  
+  .text-white{
+    margin-top: -12px;
+  }
+  
+  .btn-primary{
+    background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
+    border: none;
+  }
+  
+  span, button{
+    background-color: white;
+    color: white;
+    border: white;
+  }
+
+  .nav-link{
+    color: white;
+  }
+
+.btn-secondary{
+   background-color: white;
+   color: linear-gradient(90deg, #139EC8 0%, #01599A 100%); 
+   border-color: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
+  }
+
+/* Ocultar fila en dispositivos pequeños */
+@media (max-width: 535px) {
+    .campo {
+        display: none !important;
+    }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
