@@ -3,18 +3,14 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
     {
         path: '',
-        loadComponent: () => import('./welcome/welcome.component')
+        loadComponent: () => import('./welcome/welcome.component').then(m => m.WelcomeComponent)
     },
     {
         path: 'search',
-        loadComponent: () => import('./search/search.component')
+        loadComponent: () => import('./search/search.component').then(m => m.SearchComponent)
     },
     {
         path: 'see/:id',
-        loadComponent: () => import('./see/see.component') // Usa `m.default` si usas exportación por defecto
-    },
-    {
-        path: 'pruebas',
-        loadComponent: () => import('./pruebas/pruebas.component')
+        loadComponent: () => import('./see/see.component').then(m => m.SeeComponent)
     },
 ];

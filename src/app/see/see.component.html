@@ -2,9 +2,9 @@
     <div class="container">
       <div class="mb-4 bg-primary text-white" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); border-radius: 10px">
         <div class="container">
-          <h4 class="text-left text-start"><%= outfstock.getProduct() %></h4>
-          <h4 class="text-left text-end"><%= outfstock.getRecord() %></h4>
-          <p class="text-left"><%= outfstock.getAtcDescription() %>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quae dolores enim sed molestiae eius cum voluptatum ex explicabo ullam, in dolore id consectetur iusto suscipit laboriosam vel aspernatur asperiores!</p>
+          <h4 class="text-left text-start">{{ outofstock.product }}</h4>
+          <h4 class="text-left text-end">{{ outofstock.record }}</h4>
+          <p class="text-left">{{ outofstock.atcdescription }}</p>
         </div>
   </div>
 </div>
@@ -21,31 +21,31 @@
       <div class="row text-center">
         <div class="col-md-4">
           <h4 class="text-left">Grupo Terapeutico</h4>
-          <p class="text-left"><%= outfstock.getTherapeuticGroup() %></p>
+          <p class="text-left">{{ outofstock.therapeuticgroup }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Principio activo</h4>
-          <p class="text-left"><%= outfstock.getActivePrinciple() %></p>
+          <p class="text-left">{{ outofstock.activeprinciple }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Forma farmaceutica</h4>
-          <p class="text-left"><%= outfstock.getPharmaceuticalForm() %></p>
+          <p class="text-left">{{ outofstock.pharmaceuticalform }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">ATC</h4>
-          <p class="text-left"><%= outfstock.getAtc() %></p>
+          <p class="text-left">{{ outofstock.atc }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Estado</h4>
-          <p class="text-left"><%= outfstock.getRegistrationStatus() %></p>
+          <p class="text-left">{{ outofstock.registrationstatus }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Titular</h4>
-          <p class="text-left"><%= outfstock.getHolder() %></p>
+          <p class="text-left">{{ outofstock.holder }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Concentración</h4>
-          <p class="text-left">*<%= outfstock.getActivePrinciple() %></p>
+          <p class="text-left">*{{ outofstock.pharmaceuticalform }}</p>
         </div>
       </div>
     </div>
@@ -57,55 +57,55 @@
       <div class="row text-center">
         <div class="col-md-4">
           <h4 class="text-left">Fecha Reporte</h4>
-          <p class="text-left"><%= outfstock.getReportDate() %></p>
+          <p class="text-left">{{ outofstock.datereport }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Cont abastecimiento</h4>
-          <p class="text-left"><%= outfstock.getContactAbast() %></p>
+          <p class="text-left">{{ outofstock.contactabast }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Estado RS</h4>
-          <p class="text-left"><%= outfstock.getRsStatus() %></p>
+          <p class="text-left">{{ outofstock.rsstatus }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Canal</h4>
-          <p class="text-left"><%= outfstock.getChannel() %></p>
+          <p class="text-left">{{ outofstock.channel }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Ventas UMD 1</h4>
-          <p class="text-left"><%= outfstock.getYearOne() %></p>
+          <p class="text-left">{{ outofstock.yearone }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Ventas UMD 2</h4>
-          <p class="text-left"><%= outfstock.getYearTwo() %></p>
+          <p class="text-left">{{ outofstock.yeartwo }}</p>
         </div>      
         <div class="col-md-4">
           <h4 class="text-left">Capacidad maxima UMD</h4>
-          <p class="text-left"><%= outfstock.getCapMax() %></p>
+          <p class="text-left">{{ outofstock.capmax }}</p>
         </div>        
         <div class="col-md-4">
           <h4 class="text-left">Estado actual</h4>
-          <p class="text-left"><%= outfstock.getCurrentStatus() %></p>
+          <p class="text-left">{{ outofstock.currentstatus }}</p>
         </div>        
         <div class="col-md-4">
           <h4 class="text-left">Primer mes de reporte</h4>
-          <p class="text-left"><%= outfstock.getValueOne() %></p>
+          <p class="text-left">{{ outofstock.valueone }}</p>
         </div>        
         <div class="col-md-4">
           <h4 class="text-left">Segundo mes</h4>
-          <p class="text-left">Producto<%= outfstock.getValueTwo() %></p>
+          <p class="text-left">{{ outofstock.valuetwo }}</p>
         </div>        
         <div class="col-md-4">
           <h4 class="text-left">Tercer mes</h4>
-          <p class="text-left">Producto<%= outfstock.getValueThree() %></p>
+          <p class="text-left">{{ outofstock.valuethree }}</p>
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Cuarto mes</h4>
-          <p class="text-left">Producto<%= outfstock.getValueFour() %></p>
+          <p class="text-left">{{ outofstock.valuefour }}</p>
         </div>
         <div class="col-md-4">
-          <h4 class="text-left">Razones no comercializión setReasonsNotTrade</h4>
-          <p class="text-left">Desplegable con otra opción-</p>
+          <h4 class="text-left">Razones no comercializión</h4>
+          <p class="text-left">{{ outofstock.reasonsnottrade }}</p>
         </div>       
       </div>
     </div>
@@ -116,6 +116,6 @@
     <h4 class="text-left">Resumen</h4>
     <hr>
     <h4 class="text-left">Resumen de producto</h4>
-    <p class="text-left"><%= outfstock.getSummary() %>Lorem ipsum dolor sit amet consectetur adipisicing elit. At quae dolores enim sed molestiae eius cum voluptatum ex explicabo ullam, in dolore id consectetur iusto suscipit laboriosam vel aspernatur asperiores!</p>
+    <p class="text-left">{{ outofstock.summary }}</p>
   </div>
   </section>
