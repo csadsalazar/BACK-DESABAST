@@ -41,8 +41,7 @@
             <div class="card">
               <div class="card-body text-container">
                 <h5 class="card-title mt-2">{{ outofstock.product }}</h5>
-                <a class="btn btn-light header-btn mt-2" routerLink="see">Ver Más</a>
-
+                <a class="btn btn-light header-btn mt-2" [routerLink]="['/see', outofstock.id]">Ver Más</a>
                 <p class="card-text mt-4" id="desc1">{{ outofstock.summary }}</p>      
                 <div class="row text-center">
                   <div class="col-4">

@@ -11,7 +11,7 @@ export class OutofstockService {
   private http = inject(HttpClient);
 
   list(){
-    return this.http.get('http://localhost:8080/api/outofstock/findAll');
+    return this.http.get('http://localhost:8080/api/outofstock/find');
   }
 
   get(id: number){

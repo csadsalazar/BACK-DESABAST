@@ -1,12 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { OutofstockService } from '../service/outofstock.service';
 
 @Component({
   selector: 'app-see',
-  standalone: true,
-  imports: [  ],
   templateUrl: './see.component.html',
-  styleUrl: './see.component.css'
+  styleUrls: ['./see.component.css']
 })
-export default class SeeComponent {
+export class SeeComponent implements OnInit {
 
+  outofstock: any;
+
+  constructor(
+    private route: ActivatedRoute,
+    private outofstockService: OutofstockService
+  ) { }
+
+  ngOnInit(): void {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.outofstockService.get(id).subscribe(data => {
+      this.outofstock = data;
+    });
+  }
 }
