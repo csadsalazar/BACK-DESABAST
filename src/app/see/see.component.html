@@ -8,13 +8,11 @@
         </div>
   </div>
 </div>
-
   <section class="p-2 p-md-2 p-xl-3">
       <div class="container">
           <h4 class="text-left">Resumen general</h4>
-          <p class="text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. At quae dolores enim sed molestiae eius cum voluptatum ex explicabo ullam, in dolore id consectetur iusto suscipit laboriosam vel aspernatur asperiores!</p>
-        </div>
-
+          <p class="text-left">{{ outofstock.generalsummary}}</p>
+      </div>
     <div class="container">
       <h4 class="text-left">Descripción del producto</h4>
       <hr>
@@ -45,7 +43,7 @@
         </div>
         <div class="col-md-4">
           <h4 class="text-left">Concentración</h4>
-          <p class="text-left">*{{ outofstock.pharmaceuticalform }}</p>
+          <p class="text-left">{{ outofstock.concentration }}</p>
         </div>
       </div>
     </div>

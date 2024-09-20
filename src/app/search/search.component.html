@@ -67,3 +67,11 @@
     </div>
   </div>
 </div>
+<script>
+  function toggleText(id, link) {
+    const element = document.getElementById(id);
+    const isExpanded = element.classList.toggle('full');
+    link.classList.toggle('show', isExpanded);
+    link.classList.toggle('hide', !isExpanded);
+  }
+</script>
