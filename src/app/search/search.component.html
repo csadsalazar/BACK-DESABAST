@@ -1,48 +1,30 @@
 <div class="p-3 p-md-4 p-xl-5">
-    <div class="container">
-    <div class="mb-4 bg-primary text-white" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);">
-      <div class="row text-center">
-        <div class="col-md-4">
-          <h1 class="text-left">XXX</h1>
-          <h5 class="text-left">Resultados</h5>
-        </div>
-      <div class="col-md-4">
-          <h5 class="mt-2 text-left">Para la busqueda</h5>
-          <h4 class="text-left">Desabastecimientos reportados</h4>
-      </div>
-    </div>
-  </div>
-
   <div class="container">
-    <div class="row g-4">
-      <!-- Filtro de búsqueda card en columna solitaria -->
-      <div class="col-md-4">
-        <div class="card" style="width: 100%;">
-          <div class="card-body">
-            <h5 class="card-title text-center">Filtro de búsqueda</h5>
-              <hr>
-              <section class="search-wrapper">
-                <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Principio activo..." aria-label="Search">
-                  <input class="form-control me-2" type="search" placeholder="Nombre producto..." aria-label="Search">
-                  <input class="form-control me-2" type="search" placeholder="Expediente..." aria-label="Search">
-                  <button class="btn btn-primary" type="submit">Buscar</button>
-                </form>
-              </section>            
-          </div>
-        </div>
-      </div>
-      <!-- Cards en otra columna -->
-      <div class="col-md-8">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Resultados</mat-card-title>
+        <mat-card-subtitle>Desabastecimientos reportados</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <mat-form-field appearance="fill">
+          <mat-label>Buscar...</mat-label>
+          <input matInput [(ngModel)]="searchTerm" (ngModelChange)="updatePagedOutofstocks()">
+        </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="row g-4 mt-4">
+      <div class="col-md-12">
         <div class="row g-4">
-          <!-- Descripción ATC Card -->
-          <div class="col-md-6">
-            @for(outofstock of outofstocks; track outofstock.id) {
-            <div class="card">
-              <div class="card-body text-container">
-                <h5 class="card-title mt-2">{{ outofstock.product }}</h5>
-                <a class="btn btn-light header-btn mt-2" [routerLink]="['/see', outofstock.id]">Ver Más</a>
-                <p class="card-text mt-4" id="desc1">{{ outofstock.summary }}</p>      
+          <div class="col-md-6" *ngFor="let outofstock of pagedOutofstocks">
+            <mat-card>
+              <div class="d-flex justify-content-between align-self-end">
+                <a mat-button [routerLink]="['/see', outofstock.id]" class="align-self-end">Ver Más</a>
+              </div>
+              <mat-card-content>
+                <mat-card-title>{{ outofstock.product }}</mat-card-title>
+                <p>{{ outofstock.summary }}</p>
                 <div class="row text-center">
                   <div class="col-4">
                     <span class="badge bg-secondary d-block">{{ outofstock.atc }}</span>
@@ -54,24 +36,20 @@
                     <span class="badge bg-secondary d-block">{{ outofstock.registrationstatus }}</span>
                   </div>
                 </div>
-                <div class="more-link hide text-center" onclick="toggleText('desc1', this)">
-                  <i class="fas fa-chevron-down"></i>
-                  <i class="fas fa-chevron-up"></i>
-                </div>
-              </div>
-            </div>
-            }
+              </mat-card-content>
+            </mat-card>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <mat-paginator 
+        [length]="filteredOutofstocks.length" 
+        [pageSize]="pageSize" 
+        [pageSizeOptions]="[5, 10, 20]" 
+        (page)="onPageChange($event)">
+      </mat-paginator>
+    </div>
   </div>
 </div>
-<script>
-  function toggleText(id, link) {
-    const element = document.getElementById(id);
-    const isExpanded = element.classList.toggle('full');
-    link.classList.toggle('show', isExpanded);
-    link.classList.toggle('hide', !isExpanded);
-  }
-</script>
