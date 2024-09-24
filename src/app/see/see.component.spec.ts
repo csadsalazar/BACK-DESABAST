@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SeeComponent } from './see.component';
 
 describe('SeeComponent', () => {
