@@ -1,119 +1,126 @@
 <div class="p-2 p-md-2 p-xl-3">
-    <div class="container">
-      <div class="mb-4 bg-primary text-white" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); border-radius: 10px">
-        <div class="container">
-          <h4 class="text-left text-start">{{ outofstock.product }}</h4>
-          <h4 class="text-left text-end">{{ outofstock.record }}</h4>
-          <p class="text-left">{{ outofstock.atcdescription }}</p>
-        </div>
-  </div>
-  
-  <section class="p-2 p-md-2 p-xl-3">
-      <div class="container">
-          <h4 class="text-left">Resumen general</h4>
-          <p class="text-left">{{ outofstock.generalsummary}}</p>
-      </div>
-    <div class="container">
-      <h4 class="text-left">Descripción del producto</h4>
-      <hr>
-      <div class="row text-center">
-        <div class="col-md-4">
-          <h4 class="text-left">Grupo Terapeutico</h4>
-          <p class="text-left">{{ outofstock.therapeuticgroup }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Principio activo</h4>
-          <p class="text-left">{{ outofstock.activeprinciple }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Forma farmaceutica</h4>
-          <p class="text-left">{{ outofstock.pharmaceuticalform }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">ATC</h4>
-          <p class="text-left">{{ outofstock.atc }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Estado</h4>
-          <p class="text-left">{{ outofstock.registrationstatus }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Titular</h4>
-          <p class="text-left">{{ outofstock.holder }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Concentración</h4>
-          <p class="text-left">{{ outofstock.concentration }}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="p-2 p-md-2 p-xl-3">
-    <div class="container">
-      <h4 class="text-left">Información de disponibilidad de medicamentos</h4>
-      <hr>
-      <div class="row text-center">
-        <div class="col-md-4">
-          <h4 class="text-left">Fecha Reporte</h4>
-          <p class="text-left">{{ outofstock.datereport }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Cont abastecimiento</h4>
-          <p class="text-left">{{ outofstock.contactabast }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Estado RS</h4>
-          <p class="text-left">{{ outofstock.rsstatus }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Canal</h4>
-          <p class="text-left">{{ outofstock.channel }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Ventas UMD 1</h4>
-          <p class="text-left">{{ outofstock.yearone }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Ventas UMD 2</h4>
-          <p class="text-left">{{ outofstock.yeartwo }}</p>
-        </div>      
-        <div class="col-md-4">
-          <h4 class="text-left">Capacidad maxima UMD</h4>
-          <p class="text-left">{{ outofstock.capmax }}</p>
-        </div>        
-        <div class="col-md-4">
-          <h4 class="text-left">Estado actual</h4>
-          <p class="text-left">{{ outofstock.currentstatus }}</p>
-        </div>        
-        <div class="col-md-4">
-          <h4 class="text-left">Primer mes de reporte</h4>
-          <p class="text-left">{{ outofstock.valueone }}</p>
-        </div>        
-        <div class="col-md-4">
-          <h4 class="text-left">Segundo mes</h4>
-          <p class="text-left">{{ outofstock.valuetwo }}</p>
-        </div>        
-        <div class="col-md-4">
-          <h4 class="text-left">Tercer mes</h4>
-          <p class="text-left">{{ outofstock.valuethree }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Cuarto mes</h4>
-          <p class="text-left">{{ outofstock.valuefour }}</p>
-        </div>
-        <div class="col-md-4">
-          <h4 class="text-left">Razones no comercializión</h4>
-          <p class="text-left">{{ outofstock.reasonsnottrade }}</p>
-        </div>       
-      </div>
-    </div>
-  </section> 
-
-  <section class="p-2 p-md-2 p-xl-3">
   <div class="container">
-    <h4 class="text-left">Resumen</h4>
+    <mat-card class="mb-4" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white; border-radius: 10px;">
+      <mat-card-header>
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <mat-card-title>{{ outofstock.product }}</mat-card-title>
+          <a mat-button [routerLink]="['/search']" class="ms-2">🔙 Regresar</a>
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ outofstock.record }}</p>  
+        <p>{{ outofstock.atcdescription }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<section class="p-2 p-md-2 p-xl-3">
+  <div class="container">
+    <mat-card-title>Resumen general</mat-card-title>
+    <p class="text-left">{{ outofstock.generalsummary }}</p>
+  </div>
+  <div class="container">
+    <mat-card-title>Descripción del producto</mat-card-title>
     <hr>
-    <h4 class="text-left">Resumen de producto</h4>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-card-title>Grupo Terapeutico</mat-card-title>
+        <p class="text-left">{{ outofstock.therapeuticgroup }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Principio activo</mat-card-title>
+        <p class="text-left">{{ outofstock.activeprinciple }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Forma farmaceutica</mat-card-title>
+        <p class="text-left">{{ outofstock.pharmaceuticalform }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>ATC</mat-card-title>
+        <p class="text-left">{{ outofstock.atc }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Estado</mat-card-title>
+        <p class="text-left">{{ outofstock.registrationstatus }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Titular</mat-card-title>
+        <p class="text-left">{{ outofstock.holder }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Concentración</mat-card-title>
+        <p class="text-left">{{ outofstock.concentration }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="p-2 p-md-2 p-xl-3">
+  <div class="container">
+    <mat-card-title>Información de disponibilidad de medicamentos</mat-card-title>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <mat-card-title>Fecha Reporte</mat-card-title>
+        <p class="text-left">{{ outofstock.datereport }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Cont abastecimiento</mat-card-title>
+        <p class="text-left">{{ outofstock.contactabast }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Estado RS</mat-card-title>
+        <p class="text-left">{{ outofstock.rsstatus }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Canal</mat-card-title>
+        <p class="text-left">{{ outofstock.channel }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Ventas UMD 1</mat-card-title>
+        <p class="text-left">{{ outofstock.yearone }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Ventas UMD 2</mat-card-title>
+        <p class="text-left">{{ outofstock.yeartwo }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Capacidad maxima UMD</mat-card-title>
+        <p class="text-left">{{ outofstock.capmax }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Estado actual</mat-card-title>
+        <p class="text-left">{{ outofstock.currentstatus }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Primer mes de reporte</mat-card-title>
+        <p class="text-left">{{ outofstock.valueone }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Segundo mes</mat-card-title>
+        <p class="text-left">{{ outofstock.valuetwo }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Tercer mes</mat-card-title>
+        <p class="text-left">{{ outofstock.valuethree }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Cuarto mes</mat-card-title>
+        <p class="text-left">{{ outofstock.valuefour }}</p>
+      </div>
+      <div class="col-md-4">
+        <mat-card-title>Razones no comercializión</mat-card-title>
+        <p class="text-left">{{ outofstock.reasonsnottrade }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="p-2 p-md-2 p-xl-3">
+  <div class="container">
+    <mat-card-title>Resumen</mat-card-title>
+    <hr>
+    <mat-card-title>Resumen de producto</mat-card-title>
     <p class="text-left">{{ outofstock.summary }}</p>
   </div>
-  </section>
+</section>
