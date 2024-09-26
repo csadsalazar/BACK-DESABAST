@@ -16,7 +16,7 @@ export interface Outofstock {
 })
 export class OutofstockService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/outofstock';
+  private apiUrl = 'http://172.16.10.48:8087/api/outofstock';
 
   list(): Observable<Outofstock[]> {
     return this.http.get<Outofstock[]>(`${this.apiUrl}/find`).pipe(

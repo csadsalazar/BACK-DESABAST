@@ -1,12 +1,16 @@
 <div class="p-3 p-md-4 p-xl-5">
+
   <div class="container">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Resultados</mat-card-title>
-        <mat-card-subtitle>Desabastecimientos reportados</mat-card-subtitle>
+    <mat-card class="mc-1" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white; border-radius: 10px;">
+      <mat-card-header >
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <mat-card-title>Resultados</mat-card-title>
+          <a mat-button [routerLink]="['/']" class="ms-2 text-white">Regresar</a>
+        </div>      
       </mat-card-header>
 
       <mat-card-content>
+        <mat-card-subtitle class="text-white">Desabastecimientos reportados</mat-card-subtitle>
         <mat-form-field appearance="fill">
           <mat-label>Buscar...</mat-label>
           <input matInput [(ngModel)]="searchTerm" (ngModelChange)="updatePagedOutofstocks()">
@@ -27,14 +31,14 @@
                 <p>{{ outofstock.summary }}</p>
                 <div class="row text-center">
                   <div class="col-4">
-                    <span class="badge bg-secondary d-block">{{ outofstock.atc }}</span>
-                  </div>
-                  <div class="col-4">
-                    <span class="badge bg-secondary d-block">{{ outofstock.record }}</span>
-                  </div>
-                  <div class="col-4">
-                    <span class="badge bg-secondary d-block">{{ outofstock.registrationstatus }}</span>
-                  </div>
+                    <span class="badge d-block" [ngClass]="getStatusClass(outofstock.registrationstatus)">{{ outofstock.atc }}</span>
+                </div>
+                <div class="col-4">
+                    <span class="badge d-block" [ngClass]="getStatusClass(outofstock.registrationstatus)">{{ outofstock.record }}</span>
+                </div>
+                <div class="col-4">
+                    <span class="badge d-block" [ngClass]="getStatusClass(outofstock.registrationstatus)">{{ outofstock.registrationstatus }}</span>
+                </div>                
                 </div>
               </mat-card-content>
             </mat-card>
@@ -45,11 +49,11 @@
 
     <div class="d-flex justify-content-center mt-5">
       <mat-paginator 
-        [length]="filteredOutofstocks.length" 
-        [pageSize]="pageSize" 
-        [pageSizeOptions]="[5, 10, 20]" 
-        (page)="onPageChange($event)">
-      </mat-paginator>
+      [length]="filteredOutofstocks.length" 
+      [pageSize]="pageSize" 
+      [pageSizeOptions]="[5, 10, 20]" 
+      (page)="onPageChange($event)">
+      </mat-paginator>     
     </div>
   </div>
 </div>

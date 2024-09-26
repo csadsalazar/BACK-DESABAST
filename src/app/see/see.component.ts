@@ -4,12 +4,12 @@ import { OutofstockService } from '../service/outofstock.service';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list'; // Importar MatGridListModule
+import { MatGridListModule } from '@angular/material/grid-list'; 
 
 @Component({
   selector: 'app-see',
   standalone: true,
-  imports: [RouterLink, MatCardModule, MatButtonModule, MatGridListModule], // Añadir aquí
+  imports: [RouterLink, MatCardModule, MatButtonModule, MatGridListModule], 
   templateUrl: './see.component.html',
   styleUrls: ['./see.component.css']
 })

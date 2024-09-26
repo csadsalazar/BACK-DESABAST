@@ -3,25 +3,45 @@ import { OutofstockService } from '../service/outofstock.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { PageEvent } from '@angular/material/paginator';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatChipsModule } from '@angular/material/chips';
+
+export function customPaginatorIntl() {
+  const paginatorIntl = new MatPaginatorIntl();
+  paginatorIntl.itemsPerPageLabel = 'Registros por página';
+  paginatorIntl.nextPageLabel = 'Siguiente';
+  paginatorIntl.previousPageLabel = 'Anterior';
+
+  paginatorIntl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+    const startIndex = page * pageSize + 1;
+    const endIndex = Math.min(startIndex + pageSize - 1, length);
+    return `${startIndex} - ${endIndex} de ${length}`; // Cambiado aquí
+  };
+
+  return paginatorIntl;
+}
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [CommonModule, MatInputModule, MatButtonModule, MatCardModule, MatPaginator, RouterLink, FormsModule],
+  imports: [RouterLink, CommonModule, MatInputModule, MatButtonModule, MatCardModule, MatPaginatorModule, FormsModule, MatChipsModule],
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.css'],
+  providers: [
+    { provide: MatPaginatorIntl, useValue: customPaginatorIntl() }
+  ]
 })
+
 export class SearchComponent implements OnInit {
   searchTerm: string = '';
   outofstocks: any[] = [];
   pagedOutofstocks: any[] = [];
   totalLength: number = 0;
-  pageSize: number = 5; // Cantidad de elementos por página
+  pageSize: number = 5; 
   currentPage: number = 0; // Página actual
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -66,5 +86,24 @@ export class SearchComponent implements OnInit {
              record.includes(this.searchTerm.toLowerCase()) ||
              registrationstatus.includes(this.searchTerm.toLowerCase());
     });
+  }
+
+  getStatusClass(status: string): string {
+    switch (status) {
+      case 'No hay desabastecimiento':
+        return 'custom-chip-green';
+      case 'En Monitorización':
+        return 'custom-chip-yellow';
+      case 'Riesgo de desabastecimiento':
+        return 'custom-chip-brown';
+      case 'Desabastecido':
+        return 'custom-chip-red';
+      case 'Temporalmente no comercializado':
+        return 'custom-chip-cyan';
+      case 'Descontinuado':
+        return 'custom-chip-purple';
+      default:
+        return ''; // Sin clase por defecto
+    }
   }
 }
