@@ -8,7 +8,27 @@ export interface Outofstock {
   summary: string;
   atc: string;
   record: string;
+  atcdescription: string;
+  generalsummary: string;
+  therapeuticgroup: string;
+  activeprinciple: string;
+  pharmaceuticalform: string;
   registrationstatus: string;
+  holder: string;
+  concentration: string;
+  datereport: Date;
+  contactabast: string;
+  rsstatus: string;
+  channel: string;
+  yearone: number;
+  yeartwo: number;
+  capmax: number;
+  currentstatus: string;
+  valueone: number;
+  valuetwo: number;
+  valuethree: number;
+  valuefour: number;
+  reasonsnottrade: string;
 }
 
 @Injectable({
@@ -16,8 +36,9 @@ export interface Outofstock {
 })
 export class OutofstockService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://172.16.10.48:8087/api/outofstock';
+  private apiUrl = 'http://172.17.1.15:8087/api/outofstock';
 
+  
   list(): Observable<Outofstock[]> {
     return this.http.get<Outofstock[]>(`${this.apiUrl}/find`).pipe(
       catchError(error => {

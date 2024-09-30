@@ -1,6 +1,8 @@
+<div *ngIf="!isLoading">
 <div class="p-2 p-md-2 p-xl-3">
   <div class="container">
     <mat-card class="mb-4" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white; border-radius: 10px;">
+      <div *ngIf="isLoading">Loading...</div>
       <mat-card-header>
         <div class="d-flex justify-content-between align-items-center w-100">
           <mat-card-title>{{ outofstock.product }}</mat-card-title>
@@ -115,7 +117,6 @@
     </div>
   </div>
 </section>
-
 <section class="p-2 p-md-2 p-xl-3">
   <div class="container">
     <mat-card-title>Resumen</mat-card-title>
@@ -124,3 +125,4 @@
     <p class="text-left">{{ outofstock.summary }}</p>
   </div>
 </section>
+</div>

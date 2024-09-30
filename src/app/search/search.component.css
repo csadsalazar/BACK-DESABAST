@@ -1,29 +1,7 @@
-.custom-chip-green {
-    background-color: rgb(19, 180, 19);
-    color: white;
-}
-
-.custom-chip-yellow {
-    background-color: yellow;
-    color: black;
-}
-
-.custom-chip-brown {
-    background-color: #8B4513; /* Café */
-    color: white;
-}
-
-.custom-chip-red {
-    background-color: red;
-    color: white;
-}
-
-.custom-chip-cyan {
-    background-color: cyan;
-    color: black;
-}
-
-.custom-chip-purple {
-    background-color: purple;
-    color: white;
-}
+@media (max-width: 1400px) {
+    .stacked {
+      display: block;
+      margin-top: 10px;
+      width: 100%;
+    }
+  }

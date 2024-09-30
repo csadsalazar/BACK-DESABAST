@@ -68,7 +68,7 @@ export class SearchComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.updatePagedOutofstocks();
   }
-
+ 
   get filteredOutofstocks() {
     if (!this.searchTerm) {
       return this.outofstocks;
