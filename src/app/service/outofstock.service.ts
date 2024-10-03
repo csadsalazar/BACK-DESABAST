@@ -36,16 +36,11 @@ export interface Outofstock {
 })
 export class OutofstockService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://172.17.1.15:8087/api/outofstock';
+  private apiUrl = 'http://localhost:8080/api/outofstock';
 
   
   list(): Observable<Outofstock[]> {
-    return this.http.get<Outofstock[]>(`${this.apiUrl}/find`).pipe(
-      catchError(error => {
-        console.error('Error fetching out-of-stock items:', error);
-        return []; // Devuelve un array vacío en caso de error
-      })
-    );
+    return this.http.get<Outofstock[]>(`${this.apiUrl}/find`);
   }
 
   get(id: number): Observable<Outofstock> {
@@ -63,4 +58,14 @@ export class OutofstockService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
+
+    // Método para descargar el archivo Excel
+    downloadExcel(): Observable<Blob> {
+      return this.http.get(`${this.apiUrl}/out-of-stock`, { responseType: 'blob' }).pipe(
+        catchError(error => {
+          console.error('Error downloading the Excel file', error);
+          throw error; // Lanzar el error para manejarlo en el componente
+        })
+      );
+    }
 }

@@ -1,0 +1,34 @@
+h1 {
+    font-size: 3em; /* Tamaño grande */
+    font-weight: bold; /* Negrilla */
+    text-align: center; /* Centrado */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    margin: 10px 0; /* Margen superior e inferior */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Asegúrate de que esté por encima del contenido */
+  }
+  
+  .message {
+    color: white;
+    font-size: 15px;
+    text-align: center;
+  }
+  
+  .mat-card {
+    position: relative; /* Para que el overlay funcione correctamente */
+  }
+
+  .btn btn-primary{
+    background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white; border-radius: 10px;
+  }

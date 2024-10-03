@@ -1,48 +1,39 @@
-  <section class="p-1 p-md-2 mt-4 p-xl-1 text-justify">
-    <div class="container">
-      <mat-card class="mb-4">
-        <mat-card-header>
-          <mat-card-title class="text-center">NOTAS ACLARATORIAS</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <strong>
-            <p>Para los estados EN RIESGO DE DESABASTECIMIENTO Y DESABASTECIDO, el INVIMA implementará, según sea el caso, las siguientes estrategias de gestión ante el desabastecimiento de medicamentos a saber: 1) la priorización de los trámites asociados al registro sanitario (Circular DG 1000-0012-2023), 2) Autorización de Importación por única vez, 3) Declarar el medicamento como “vital no disponible”, siempre y cuando cumpla con los establecido en el Decreto 481 de 2004 y 4) se sugiere alternativas terapéuticas disponibles en el mercado.</p>
-            <p><u>Lo anterior sólo aplicará para el principio activo, concentraciones y forma farmacéutica publicados en el presente listado.</u></p>
-            <p>Los reportes de disponibilidad informados por los titulares de los registros sanitarios en estado vigente y en trámite de renovación requeridos por el Invima, corresponden a las cantidades de unidades en unidades mínimas de dispensación - UMD (tabletas, cápsulas, ampollas, frascos, viales) disponibles para comercializar en el mes indicado tanto en el canal comercial como institucional (según corresponda). No se reportan en el presente listado unidades a exportar.</p>
-            <p>Los seguimientos que se llevan a cabo en atención a las alertas de un posible riesgo de desabastecimiento se enfocan hacia los principios activos, concentraciones y forma farmacológica; más NO se realizan hacia marcas, laboratorios o registros sanitarios en específico.</p>
-          </strong>
-        </mat-card-content>
-      </mat-card>
-  
-      <mat-card>
-        <mat-card-content>
-          <p>Definición de los <strong>ESTADOS</strong> de clasificación de los principios activos, contemplados por el INVIMA:</p>
-          <mat-list *ngFor="let status of statuses">
-              <mat-chip [ngClass]="status.className">
-                <a class="text-white text-decoration-none">{{ status.label }}</a>
-              </mat-chip>
-              <div class="flex-grow-1 mt-2">{{ status.description }}</div>
-          </mat-list>
-        </mat-card-content>
-      </mat-card>
-  
-      <mat-card class="mt-4">
-        <mat-card-content>
-          <mat-list *ngFor="let desabast of desabasts">
-              <strong>
-                <a class="text-decoration-none text-black">{{ desabast.label }}</a>
-              </strong>
-              <div class="flex-grow-1">{{ desabast.description }}</div>
-          </mat-list>
-        </mat-card-content>
-      </mat-card>
+<section class="p-1 p-md-2 mt-4 p-xl-1 text-justify">
+  <div class="container">
+    <h1 class="text-center">Notas Aclaratorias</h1>
+    <mat-card class="mb-4">
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab *ngFor="let nota of notas" [label]="nota.label">
+            <div [innerHTML]="nota.content"></div>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+
+      <p>Definición de los <strong>ESTADOS</strong> de clasificación de los principios activos, contemplados por el INVIMA:</p>
+
+      <div class="row g-3 mt-2">
+        <div class="col-md-6" *ngFor="let status of statuses; let i = index">
+          <mat-card style="height: 125px;" (mouseenter)="onMouseEnter(i)" (mouseleave)="onMouseLeave()" [ngClass]="status.className">
+            <mat-card-content>
+              <div class="d-flex flex-column justify-content-center align-items-center text-center">
+                <mat-card-title class="text-white mt-4">{{ status.label }}</mat-card-title>
+                <div class="overlay" *ngIf="activeStatusIndex === i">
+                  <div class="message">{{ status.description }}</div>
+                </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
   
       <div class="alert alert-success mt-3" role="alert">
         RECUERDE: EL PRESENTE LISTADO ES UN LISTADO DE DIAGNOSTICO, NO DE PRONOSTICO. Por cuanto es el resultado de un proceso dinámico que depende de la oportunidad y calidad en la información reportada por los titulares en diferentes meses del año y la evidenciada en el SISMED. Por ejemplo, un medicamento puede estar desabastecido en un tiempo específico, pero puede luego cambiar su estado a monitorización o no desabastecidos meses después. Por tanto, su consulta debe ser mensual.
       </div>
-  
       <div class="d-flex justify-content-center ">
-        <a class="btn btn-primary" routerLink="search" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white; border-radius: 10px;">Consultar >>></a>
+        <a mat-flat-button class="me-4" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white;" href="https://www.invima.gov.co/productos-vigilados/medicamentos-y-productos-biologicos/desabastecimientos" target="_blank">Volver</a>
+        <button mat-flat-button style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white;" routerLink="search">Consultar</button>
       </div>
-    </div>
-  </section>
+  </div>
+</section>

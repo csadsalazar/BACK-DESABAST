@@ -48,6 +48,22 @@ export class SearchComponent implements OnInit {
 
   private outOfStockService = inject(OutofstockService);
 
+  downloadExcel() {
+    this.outOfStockService.downloadExcel().subscribe(blob => {
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'out_of_stock_data.xlsx';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Download failed:', error);
+      alert('Error al descargar el archivo Excel.');
+    });
+  }
+
   ngOnInit(): void {
     this.outOfStockService.list()
       .subscribe((outofstocks: any) => {
