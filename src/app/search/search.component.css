@@ -1,7 +1,14 @@
 @media (max-width: 1400px) {
-    .stacked {
-      display: block;
-      margin-top: 10px;
-      width: 100%;
-    }
+  .stacked {
+    display: block;
+    margin-top: 10px;
+    width: 100%;
   }
+}
+
+@media (min-width: 768px) {
+  .custom-button {
+    display: block;
+    margin-top: -20px;
+  }
+}

@@ -1,39 +1,79 @@
 <section class="p-1 p-md-2 mt-4 p-xl-1 text-justify">
   <div class="container">
-    <h1 class="text-center">Notas Aclaratorias</h1>
+
+    <div class="container">
+      <div class="row justify-content-center">
+          <!-- Card más grande -->
+          <div class="col-md-7 mb-4">
+              <div class="card h-100" style="border: none;">
+                  <div class="card-body d-flex flex-column justify-content-center">
+                      <h2 class="text-left mt-4">ESTAMOS COMPROMETIDOS CON LA DISPONIBILIDAD DE MEDICAMENTOS ESENCIALES</h2>
+                      <h3 class="text-left"><strong>Fecha de corte: Septiembre 16 de 2024</strong></h3>
+                      <p class="card-text text-left">En Invima, trabajamos incansablemente para asegurar que los medicamentos críticos estén siempre disponibles para quienes los necesitan. Enfrentamos desafíos como el aumento de la demanda, problemas de manufactura y escasez de materias primas, pero nuestro compromiso es firme: proteger la salud de todos los colombianos. Mantente informado sobre los medicamentos desabastecidos y en riesgo de desabastecimiento con nuestras actualizaciones permanentes.</p>
+                  </div>
+              </div>
+          </div>
+  
+          <!-- Card más pequeña -->
+          <div class="col-md-5 mb-4">
+              <div class="card h-100 d-flex align-items-center justify-content-center" style="border: none;">
+                  <div class="card-body d-flex align-items-center justify-content-center">
+                      <img src="assets/images/backgrounds/herobanner.png" alt="Imagen seleccionada" class="img-fluid">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+    <div class="container mt-4">
+      <div class="row justify-content-center">
+        <div class="col-md-4 margin-top-md">
+          <div class="card h-100 mx-auto" style="border: none;">
+              <div class="card-body d-flex flex-column justify-content-between">
+                  <div class="flex-grow-1">
+                      <div *ngFor="let button of buttons">
+                          <button 
+                              class="w-100 mt-2" 
+                              mat-flat-button 
+                              (click)="onButtonClick(button)" 
+                              [ngStyle]="{
+                                  'background-color': selectedButton === button.imageUrl ? button.color : '#fff',
+                                  'color': selectedButton === button.imageUrl ? '#fff' : '#000'
+                              }" 
+                              style="border: 1px solid gray;">
+                              {{ button.label }}
+                          </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>       
+
+        <div class="col-md-6">
+          <div class="card h-100 mx-auto" style="border: none;">
+            <div class="card-body text-white">
+              <h3 *ngIf="selectedLabel" class="text-uppercase ps-3" [ngStyle]="{'background-color': cardColor}" style="border-radius: 5px;"><strong>{{ selectedLabel }}</strong></h3>
+              <img *ngIf="selectedButton" [src]="selectedButton" alt="Imagen seleccionada" class="img-fluid mt-3">
+              <p *ngIf="selectedText" class="mt-2 ps-3" style="border-radius: 5px; font-size: 17px; padding: 10px;" [ngStyle]="{'background-color': cardColor}">{{ selectedText }}</p> 
+            </div>
+          </div>
+        </div>          
+      </div>
+    </div>
+
     <mat-card class="mb-4">
-      <mat-card-content>
-        <mat-tab-group>
-          <mat-tab *ngFor="let nota of notas" [label]="nota.label">
-            <div [innerHTML]="nota.content"></div>
-          </mat-tab>
-        </mat-tab-group>
-      </mat-card-content>
+        <mat-card-content>
+            <mat-tab-group>
+                <mat-tab *ngFor="let nota of notas" [label]="nota.label">
+                    <div [innerHTML]="nota.content"></div>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
     </mat-card>
 
-      <p>Definición de los <strong>ESTADOS</strong> de clasificación de los principios activos, contemplados por el INVIMA:</p>
-
-      <div class="row g-3 mt-2">
-        <div class="col-md-6" *ngFor="let status of statuses; let i = index">
-          <mat-card style="height: 125px;" (mouseenter)="onMouseEnter(i)" (mouseleave)="onMouseLeave()" [ngClass]="status.className">
-            <mat-card-content>
-              <div class="d-flex flex-column justify-content-center align-items-center text-center">
-                <mat-card-title class="text-white mt-4">{{ status.label }}</mat-card-title>
-                <div class="overlay" *ngIf="activeStatusIndex === i">
-                  <div class="message">{{ status.description }}</div>
-                </div>
-              </div>
-            </mat-card-content>
-          </mat-card>
-        </div>
-      </div>
-  
-      <div class="alert alert-success mt-3" role="alert">
-        RECUERDE: EL PRESENTE LISTADO ES UN LISTADO DE DIAGNOSTICO, NO DE PRONOSTICO. Por cuanto es el resultado de un proceso dinámico que depende de la oportunidad y calidad en la información reportada por los titulares en diferentes meses del año y la evidenciada en el SISMED. Por ejemplo, un medicamento puede estar desabastecido en un tiempo específico, pero puede luego cambiar su estado a monitorización o no desabastecidos meses después. Por tanto, su consulta debe ser mensual.
-      </div>
-      <div class="d-flex justify-content-center ">
+    <div class="d-flex justify-content-center">
         <a mat-flat-button class="me-4" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white;" href="https://www.invima.gov.co/productos-vigilados/medicamentos-y-productos-biologicos/desabastecimientos" target="_blank">Volver</a>
-        <button mat-flat-button style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white;" routerLink="search">Consultar</button>
-      </div>
+        <button mat-flat-button style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white;" routerLink="search">Consultar</button>  
+    </div>
   </div>
 </section>

@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 
 export interface Outofstock {
   id: number;
   product: string;
-  summary: string;
+  resofinv: string;
   atc: string;
   record: string;
   atcdescription: string;
@@ -13,22 +13,41 @@ export interface Outofstock {
   therapeuticgroup: string;
   activeprinciple: string;
   pharmaceuticalform: string;
-  registrationstatus: string;
+  abaststatus: string;
   holder: string;
   concentration: string;
   datereport: Date;
-  contactabast: string;
   rsstatus: string;
-  channel: string;
-  yearone: number;
-  yeartwo: number;
-  capmax: number;
-  currentstatus: string;
-  valueone: number;
-  valuetwo: number;
-  valuethree: number;
-  valuefour: number;
-  reasonsnottrade: string;
+  causes: string;
+  dateofstart: Date;
+  dateend: Date;
+  dateclosing: Date;
+
+  // Canal comercial
+  commercialchannel: string;
+  commercialyearone: number;
+  commercialyeartwo: number;
+  commercialcapmax: number;
+  commercialvalueone: number;
+  commercialvaluetwo: number;
+  commercialvaluethree: number;
+  commercialvaluefour: number;
+  commercialcurrentstatus: string;
+  commercialreasonsnottrade: string;
+  commercialobsnotcommerce: string;
+
+  // Canal comercial
+  institutionalchannel: string;
+  institutionalyearone: number;
+  institutionalyeartwo: number;
+  institutionalcapmax: number;
+  institutionalvalueone: number;
+  institutionalvaluetwo: number;
+  institutionalvaluethree: number;
+  institutionalvaluefour: number;
+  institutionalcurrentstatus: string;
+  institutionalreasonsnottrade: string;
+  institutionalobsnotcommerce: string;
 }
 
 @Injectable({
@@ -36,7 +55,7 @@ export interface Outofstock {
 })
 export class OutofstockService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/outofstock';
+  private apiUrl = 'http://68.154.2.143:8080/api/outofstock';
 
   
   list(): Observable<Outofstock[]> {
@@ -59,13 +78,40 @@ export class OutofstockService {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
 
-    // Método para descargar el archivo Excel
-    downloadExcel(): Observable<Blob> {
-      return this.http.get(`${this.apiUrl}/out-of-stock`, { responseType: 'blob' }).pipe(
-        catchError(error => {
-          console.error('Error downloading the Excel file', error);
-          throw error; // Lanzar el error para manejarlo en el componente
-        })
-      );
+    // Agrega estos métodos en OutofstockService
+  findAllActivePrinciples(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/activeprinciple`);
+  }
+
+  findAllAtc(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/atc`);
+  }
+
+  findAllAbastStatus(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/abaststatus`);
+  }
+
+  downloadExcel(activePrinciples?: string, atc?: string, abastStatus?: string): Observable<Blob> {
+    const params: { [key: string]: string } = {};
+    
+    if (activePrinciples) {
+      params['activeprinciples'] = activePrinciples; 
     }
+    
+    if (atc) {
+      params['atc'] = atc; 
+    }
+    
+    if (abastStatus) {
+      params['abaststatus'] = abastStatus; 
+    }
+  
+    return this.http.get(`${this.apiUrl}/download-excel`, { params, responseType: 'arraybuffer' }).pipe(
+      map((data: ArrayBuffer) => new Blob([data])),
+      catchError(error => {
+        console.error('Error downloading the Excel file', error);
+        throw error;
+      })
+    );
+  }  
 }

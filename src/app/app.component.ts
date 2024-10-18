@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { DialogService } from './service/dialog.service';
 
 
 @Component({
@@ -13,5 +14,5 @@ import { MatGridListModule } from '@angular/material/grid-list';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'desabast-frond';
+  title = 'desabast-frond'; 
 }

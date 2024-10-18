@@ -2,35 +2,42 @@
 
 .custom-chip-green {
   background-color: #42ab49 !important;
+  color: white;
 }
 
 .custom-chip-yellow {
   background-color: #ff9800 !important;
+  color: white;
 }
 
 .custom-chip-brown {
   background-color: #c19982 !important;
+  color: white;
 }
 
 .custom-chip-red {
   background-color: #e2504c !important;
+  color: white;
 }
 
 .custom-chip-cyan {
   background-color: #00cbcc !important;
+  color: white;
 }
 
 .custom-chip-purple {
   background-color: #7f00b2 !important;
+  color: white;
+}
+
+.custom-chip-basic{
+ color: black;
 }
 
 #options{
     background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
     }
 
-    .badge bg-primary{
-      background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
-    }
 
   .footer{
     background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
@@ -45,6 +52,5 @@
     }
 }
 
-
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Nunito Sans", sans-serif; }

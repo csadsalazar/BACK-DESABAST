@@ -1,0 +1,67 @@
+<h2 mat-dialog-title>Descargar reporte</h2>
+<mat-dialog-content class="mat-typography">
+  <p>En el presente apartado se encontrarán los filtros de descarga de Excel.</p>
+
+  <!-- Filtro de Principios Activos -->
+  <div class="filter-group">
+    <mat-label>Filtrar por Principios Activos</mat-label>
+    <p class="filter-description">Seleccione un principio activo para limitar los resultados.</p>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Principios Activos</mat-label>
+      <mat-select #principlesSelect [(value)]="selectedActivePrinciples" multiple>
+        <mat-option (click)="clearSelection('principles')">Sin Opción</mat-option> <!-- Opción Sin Opción -->
+        <mat-option *ngFor="let principle of activePrinciples" [value]="principle">
+          {{ principle }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Filtro de Estado de Abastecimiento -->
+  <div class="filter-group">
+    <mat-label>Filtrar por Estado de Abastecimiento</mat-label>
+    <p class="filter-description">Elija el estado de abastecimiento que desea considerar.</p>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Estado de Abastecimiento</mat-label>
+      <mat-select #abastStatusSelect [(value)]="selectedAbastStatus" multiple>
+        <mat-option (click)="clearSelection('abastStatus')">Sin Opción</mat-option> <!-- Opción Sin Opción -->
+        <mat-option *ngFor="let status of abastStatusList" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Filtro ATC en sección expandible -->
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Más filtros
+        </mat-panel-title>
+        <mat-panel-description>
+          Filtros de interés interno
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="filter-group">
+        <mat-label>Filtrar por ATC</mat-label>
+        <p class="filter-description">Seleccione un ATC para refinar su búsqueda.</p>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>ATC</mat-label>
+          <mat-select #atcSelect [(value)]="selectedAtc" multiple>
+            <mat-option (click)="clearSelection('atc')">Sin Opción</mat-option> <!-- Opción Sin Opción -->
+            <mat-option *ngFor="let atc of atcList" [value]="atc">
+              {{ atc }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-dialog-content>
+
+<!-- Botones de acción -->
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onNoClick()">Cancelar</button>
+  <button mat-button (click)="downloadExcel()" cdkFocusInitial>Descargar Excel</button>
+</mat-dialog-actions>

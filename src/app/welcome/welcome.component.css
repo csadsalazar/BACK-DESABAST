@@ -6,29 +6,38 @@ h1 {
     margin: 10px 0; /* Margen superior e inferior */
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10; /* Asegúrate de que esté por encima del contenido */
-  }
+h2 {
+  font-size: 2rem; /* Tamaño grande */
+  font-weight: bold; /* Negrilla */
+  color: #139EC8;
+  margin: 10px 0; /* Margen superior e inferior */
   
-  .message {
-    color: white;
-    font-size: 15px;
-    text-align: center;
-  }
-  
-  .mat-card {
-    position: relative; /* Para que el overlay funcione correctamente */
-  }
+}
 
-  .btn btn-primary{
-    background: linear-gradient(90deg, #139EC8 0%, #01599A 100%); color: white; border-radius: 10px;
+.card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto; /* Centra la imagen */
+}
+
+@media (min-width: 768px) {
+  .margin-top-md {
+      margin-top: 1.5rem; /* Equivalente a mt-4 de Bootstrap */
   }
+}
+
+.row {
+  position: relative; /* Asegúrate de que la sombra se posicione correctamente */
+}
+
+.row::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px; /* Ajusta la distancia de la sombra desde el fondo */
+  height: 3px; /* Ajusta la altura de la sombra */
+  background: rgba(0, 0, 0, 0.1); /* Color y opacidad de la sombra */
+  border-radius: 5px; /* Opcional: para bordes redondeados */
+}

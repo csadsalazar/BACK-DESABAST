@@ -13,8 +13,4 @@ export const routes: Routes = [
         path: 'see/:id',
         loadComponent: () => import('./see/see.component').then(m => m.SeeComponent)
     },
-    {
-        path: 'prueba',
-        loadComponent: () => import('./prueba/prueba.component').then(m => m.PruebaComponent)
-    },
 ];
