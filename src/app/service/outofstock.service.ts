@@ -36,7 +36,7 @@ export interface Outofstock {
   commercialreasonsnottrade: string;
   commercialobsnotcommerce: string;
 
-  // Canal comercial
+  // Canal institucional
   institutionalchannel: string;
   institutionalyearone: number;
   institutionalyeartwo: number;
@@ -55,9 +55,8 @@ export interface Outofstock {
 })
 export class OutofstockService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://172.17.1.20:8081/api/outofstock';
+  private apiUrl = 'http://localhost:8081/api/outofstock';
 
-  
   list(): Observable<Outofstock[]> {
     return this.http.get<Outofstock[]>(`${this.apiUrl}/find`);
   }
@@ -78,7 +77,6 @@ export class OutofstockService {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
 
-    // Agrega estos métodos en OutofstockService
   findAllActivePrinciples(): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiUrl}/activeprinciple`);
   }
@@ -109,7 +107,6 @@ export class OutofstockService {
     return this.http.get(`${this.apiUrl}/download-excel`, { params, responseType: 'arraybuffer' }).pipe(
       map((data: ArrayBuffer) => new Blob([data])),
       catchError(error => {
-        console.error('Error downloading the Excel file', error);
         throw error;
       })
     );
