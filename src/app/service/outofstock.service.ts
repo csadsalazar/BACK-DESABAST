@@ -55,7 +55,7 @@ export interface Outofstock {
 })
 export class OutofstockService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8081/api/outofstock';
+  private apiUrl = 'https://desabastecido.invima.gov.co:8080/api/outofstock';
 
   list(): Observable<Outofstock[]> {
     return this.http.get<Outofstock[]>(`${this.apiUrl}/find`);
