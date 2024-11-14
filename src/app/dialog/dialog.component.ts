@@ -1,6 +1,6 @@
   import { Component, Inject, OnInit, ViewChild } from '@angular/core';
   import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-  import { OutofstockService } from '../service/outofstock.service';
+  import { OutofstockService } from '../service/abaststatus.service';
   import { CommonModule } from '@angular/common';
   import { MatButtonModule } from '@angular/material/button';
   import { MatFormFieldModule } from '@angular/material/form-field';

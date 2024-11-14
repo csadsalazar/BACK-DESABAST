@@ -1,5 +1,5 @@
   import { Component, OnInit, inject, ViewChild, Inject } from '@angular/core';
-  import { OutofstockService } from '../service/outofstock.service';
+  import { OutofstockService } from '../service/abaststatus.service';
   import { MatInputModule } from '@angular/material/input';
   import { MatButtonModule } from '@angular/material/button';
   import { MatCardModule } from '@angular/material/card';
