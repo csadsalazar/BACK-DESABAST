@@ -12,7 +12,7 @@ export interface pharmaceuticalForm {
 })
 export class pharmaceuticalFormService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/abast-status';
+  private apiUrl = 'http://localhost:8080/api/pharmaceutical-form';
 
   list(): Observable<pharmaceuticalForm[]> {
     return this.http.get<pharmaceuticalForm[]>(`${this.apiUrl}/find`);
@@ -22,12 +22,12 @@ export class pharmaceuticalFormService {
     return this.http.get<pharmaceuticalForm>(`${this.apiUrl}/find/${id}`);
   }
 
-  save(holder: pharmaceuticalForm): Observable<pharmaceuticalForm> {
-    return this.http.post<pharmaceuticalForm>(`${this.apiUrl}/save`, holder);
+  save(pharmaceuticalform: pharmaceuticalForm): Observable<pharmaceuticalForm> {
+    return this.http.post<pharmaceuticalForm>(`${this.apiUrl}/save`, pharmaceuticalform);
   }
 
-  update(id: number, holder: pharmaceuticalForm): Observable<pharmaceuticalForm> {
-    return this.http.put<pharmaceuticalForm>(`${this.apiUrl}/update/${id}`, holder);
+  update(id: number, pharmaceuticalform: pharmaceuticalForm): Observable<pharmaceuticalForm> {
+    return this.http.put<pharmaceuticalForm>(`${this.apiUrl}/update/${id}`, pharmaceuticalform);
   }
 
   delete(id: number): Observable<void> {

@@ -10,7 +10,7 @@ export interface cause {
 @Injectable({
   providedIn: 'root'
 })
-export class activePrincipleService {
+export class causeService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/cause';
 

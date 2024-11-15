@@ -9,8 +9,4 @@ export const routes: Routes = [
         path: 'search',
         loadComponent: () => import('./search/search.component').then(m => m.SearchComponent)
     },
-    {
-        path: 'see/:id',
-        loadComponent: () => import('./see/see.component').then(m => m.SeeComponent)
-    },
 ];

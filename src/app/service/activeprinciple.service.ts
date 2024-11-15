@@ -21,7 +21,7 @@ export interface activePrinciple {
 })
 export class activePrincipleService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/abast-status';
+  private apiUrl = 'http://localhost:8080/api/active-principle';
 
   list(): Observable<activePrinciple[]> {
     return this.http.get<activePrinciple[]>(`${this.apiUrl}/find`);

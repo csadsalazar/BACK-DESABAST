@@ -10,9 +10,9 @@ export interface channelType {
 @Injectable({
   providedIn: 'root'
 })
-export class activePrincipleService {
+export class channelTypeService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/cause';
+  private apiUrl = 'http://localhost:8080/api/channel-type';
 
   list(): Observable<channelType[]> {
     return this.http.get<channelType[]>(`${this.apiUrl}/find`);
