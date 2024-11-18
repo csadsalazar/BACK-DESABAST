@@ -6,17 +6,17 @@ export interface reportDetail {
   id: number;
   filed: Number;
   auto: Number;
-  processtype: string;
-  fileddate: Date;
-  autodate: Date;
-  autocontdate: Date;
-  resantinv: string;
+  processType: string;
+  filedFate: Date;
+  autoFate: Date;
+  autoContDate: Date;
+  resAntInv: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class reportDetailService {
+export class ReportDetailService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/report-detail';
 

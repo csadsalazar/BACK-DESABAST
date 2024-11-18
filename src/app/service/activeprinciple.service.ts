@@ -1,25 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable,} from 'rxjs';
+import { abastStatus } from './abaststatus.service';
+import { cause } from './cause.service';
+import { technicalDetail } from './technicaldetail.service';
 
 export interface activePrinciple {
   id: number;
-  activeprinciplename: string;
-  actcode: string;
-  actdescription: string;
-  initialfollowup: Date;
-  finalfollowup: Date;
-  finishdate: Date;
+  activePrincipleName: string;
+  actCode: string;
+  actDescription: string;
+  initialFollowUp: Date;
+  finalFollowUp: Date;
+  finishDate: Date;
   summary: string;
-  abaststatusfK: Number;
-  causefK: Number;
-  technicaldetailfK: Number;
+  abastStatusFK: abastStatus;  // Relación con AbastStatusDTO
+  causeFK: cause;
+  technicalDetailFK: technicalDetail;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class activePrincipleService {
+export class ActivePrincipleService {
+
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/active-principle';
 
@@ -31,12 +35,12 @@ export class activePrincipleService {
     return this.http.get<activePrinciple>(`${this.apiUrl}/find/${id}`);
   }
 
-  save(activeprinciple: activePrinciple): Observable<activePrinciple> {
-    return this.http.post<activePrinciple>(`${this.apiUrl}/save`, activeprinciple);
+  save(principle: activePrinciple): Observable<activePrinciple> {
+    return this.http.post<activePrinciple>(`${this.apiUrl}/save`, principle);
   }
 
-  update(id: number, activeprinciple: activePrinciple): Observable<activePrinciple> {
-    return this.http.put<activePrinciple>(`${this.apiUrl}/update/${id}`, activeprinciple);
+  update(id: number, principle: activePrinciple): Observable<activePrinciple> {
+    return this.http.put<activePrinciple>(`${this.apiUrl}/update/${id}`, principle);
   }
 
   delete(id: number): Observable<void> {

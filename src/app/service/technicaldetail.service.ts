@@ -16,7 +16,7 @@ export interface technicalDetail {
 @Injectable({
   providedIn: 'root'
 })
-export class technicalDetailService {
+export class TechnicalDetailService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/technical-detail';
 

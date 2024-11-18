@@ -10,7 +10,7 @@ export interface channelType {
 @Injectable({
   providedIn: 'root'
 })
-export class channelTypeService {
+export class ChannelTypeService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/channel-type';
 

@@ -4,15 +4,15 @@ import { Observable,} from 'rxjs';
 
 export interface holder {
   id: number;
-  contactname: string;
-  holdaremail: string;
-  holdarphonenumber: string;
+  contactName: string;
+  holdarEmail: string;
+  holdarPhoneNumber: Number;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class holderService {
+export class HolderService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/holder';
 

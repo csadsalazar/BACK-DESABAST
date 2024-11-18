@@ -4,13 +4,13 @@ import { Observable,} from 'rxjs';
 
 export interface pharmaceuticalForm {
   id: number;
-  pharmaceuticalformname: string;
+  pharmaceuticalFormName: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class pharmaceuticalFormService {
+export class PharmaceuticalFormService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/pharmaceutical-form';
 

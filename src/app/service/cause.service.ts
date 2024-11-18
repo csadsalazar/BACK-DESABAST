@@ -4,13 +4,13 @@ import { Observable,} from 'rxjs';
 
 export interface cause {
   id: number;
-  causename: string;
+  causeName: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class causeService {
+export class CauseService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/cause';
 

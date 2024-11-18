@@ -4,13 +4,13 @@ import { Observable,} from 'rxjs';
 
 export interface abastStatus {
   id: number;
-  statusabastname: string;
+  statusAbastName: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class abastStatusService {
+export class AbastStatusService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/abast-status';
 

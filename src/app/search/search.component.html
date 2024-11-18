@@ -1,83 +1,109 @@
-<div class="p-3 p-md-4 p-xl-5">
-  <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Consultar</li>
-      </ol>
-    </nav>
-    <mat-card class="mc-1" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);">
-      <mat-card-header>
-        <h1 class="ml-2 text-white"><strong>RESULTADOS {{ filteredCount }}</strong></h1>
-      </mat-card-header>
+  <div class="p-3 p-md-4 p-xl-5">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a [routerLink]="['/']">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Consultar</li>
+        </ol>
+      </nav>
       
-      <mat-card-content class="container-fluid">
-        <!-- Alineación de los elementos con d-flex y align-items-center -->
-        <div class="row d-flex align-items-center">
-          
-          <!-- Buscador -->
-          <div class="col-12 col-md-4 mb-3">
-            <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Buscar...</mat-label>
-              <input matInput [(ngModel)]="searchTerm">
-            </mat-form-field>
-          </div>
-    
-          <!-- Filtro de Estado Abastecimiento -->
-          <div class="col-12 col-md-4 mb-3">
-            <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Estado Abastecimiento</mat-label>
+      <!-- Card con el título -->
+      <mat-card class="mc-1" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);">
+        <mat-card-header>
+          <h1 class="ml-2 text-white"><strong>RESULTADOS</strong></h1>
+        </mat-card-header> 
 
-            </mat-form-field>
-          </div>
+        <mat-card-content class="container-fluid">
+          <div class="row d-flex align-items-center">
+            
+            <!-- Buscador -->
+            <div class="col-12 col-md-4 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Buscar...</mat-label>
+                <!-- Agregar control dentro de mat-form-field -->
+                <input matInput  placeholder="Buscar">
+              </mat-form-field>
+            </div>
     
-          <!-- Enlace de descarga -->
-          <div class="col-12 col-md-4 mb-3 text-md-right">
-            <button mat-button class="btn text-white" >Descargar reporte</button>
+            <!-- Filtro de Estado Abastecimiento -->
+            <div class="col-12 col-md-4 mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Estado Abastecimiento</mat-label>
+                <!-- Agregar control select dentro de mat-form-field -->
+                <mat-select >
+                  <mat-option>Prueba</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+    
+            <!-- Enlace de descarga -->
+            <div class="col-12 col-md-4 mb-3 text-md-right">
+              <button mat-button class="btn text-white">Descargar reporte</button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>    
+
+      <!-- Indicador de carga -->
+      <div *ngIf="isLoading" class="text-center">
+        <mat-spinner></mat-spinner> <!-- Puedes usar MatSpinner o cualquier otro indicador de carga -->
+      </div>
+
+      <!-- Cards -->
+      <div class="row g-4 mt-4" *ngIf="!isLoading && activePrinciples.length > 0; else noProductos">
+        <div class="col-md-6" *ngFor="let principle of activePrinciples">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <!-- Parte frontal de la tarjeta -->
+              <div class="flip-card-front" [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
+                <mat-card-content>
+                  <mat-card-title>{{ principle.activePrincipleName }} {{ principle.actCode }}</mat-card-title>
+                  <div *ngIf="principle.abastStatusFK.statusAbastName">
+                    <img [src]="getImageClass(principle.abastStatusFK.statusAbastName)" alt="Status Image" class="img-fluid rounded mx-auto d-block"/>
+                  </div>
+                </mat-card-content>
+              </div>
+
+              <!-- Parte trasera de la tarjeta -->
+              <div class="flip-card-back" [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
+                <mat-card-content class="text-center">
+                  <div class="row text-center">
+                    <mat-chip-set aria-label="Fish selection">  
+                      <div class="col-md-3 stacked">
+                        <mat-card-subtitle>Descripción ATC</mat-card-subtitle>
+                        <mat-chip>
+                          <a class="text-decoration-none text-dark">{{ principle.actDescription || 'Sin expediente' }}</a>
+                        </mat-chip>
+                      </div>
+                      <div class="col-md-6 stacked">
+                        <mat-card-subtitle>Estado abastecimiento</mat-card-subtitle>
+                        <mat-chip>
+                          <a class="text-decoration-none">{{ principle.abastStatusFK.statusAbastName || 'Sin estado' }}</a>
+                        </mat-chip>
+                      </div>
+                      <div class="col-md-3 stacked">
+                        <mat-card-subtitle>Código ATC</mat-card-subtitle>
+                        <mat-chip>
+                          <a class="text-decoration-none">{{ principle.actCode || 'Sin código' }}</a>
+                        </mat-chip>
+                      </div>
+                    </mat-chip-set>
+                  </div>
+                  <a href="#" class="btn btn-light">Ver más</a>
+                </mat-card-content>
+              </div>
+            </div>
           </div>
         </div>
-      </mat-card-content>
-    </mat-card>    
+      </div>
 
-    <!-- Cards -->
-    <div class="row g-4 mt-4">
-      <div class="col-md-6" *ngFor="let principle of activePrinciples">
-        <mat-card>
-          <div class="d-flex justify-content-between align-self-end">
-            <a class="align-self-end">Ver Más</a>
-          </div>
-          <mat-card-content>
-            <mat-card-title>{{ principle.activeprinciplename }}</mat-card-title>
-            <div class="row text-center">
-              <mat-chip-set aria-label="Fish selection">  
-                <div class="col-md-3 stacked">
-                  <mat-card-subtitle>Descripción ATC</mat-card-subtitle>
-                  <mat-chip>
-                    <a  class="text-decoration-none text-dark">{{ principle.actdescription  ? principle.actdescription  : 'Sin expediente'  }}</a>
-                  </mat-chip>
-                </div>
-                <div class="col-md-6 stacked">
-                  <mat-card-subtitle>Estado abastecimiento</mat-card-subtitle>
-                  <!-- Aquí aplicamos la verificación del estado -->
-                  <mat-chip >
-                    <a class= "text-decoration-none">{{ principle.abaststatusfK ? principle.abaststatusfK : 'Sin estado' }}</a>
-                  </mat-chip>
-                </div>
-                <div class="col-md-3 stacked">
-                  <mat-card-subtitle>Codigo ATC</mat-card-subtitle>
-                  <mat-chip >
-                    <a class="text-decoration-none">{{ principle.actcode ? principle.actcode : 'Sin atc' }}</a>
-                  </mat-chip>
-                </div>
-              </mat-chip-set>
-            </div>
-          </mat-card-content>
-        </mat-card>
+      <ng-template #noProductos>
+        <p *ngIf="!isLoading && !errorMessage">No se encontraron productos.</p>
+        <p *ngIf="errorMessage">{{ errorMessage }}</p>
+      </ng-template>
+
+      <div class="d-flex justify-content-center mt-5">
+        <!-- Aquí puedes agregar algún control de paginación o más acciones -->
       </div>
     </div>
-
-    <div class="d-flex justify-content-center mt-5">
-
-    </div>
   </div>
-</div>

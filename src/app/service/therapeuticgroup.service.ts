@@ -4,13 +4,13 @@ import { Observable,} from 'rxjs';
 
 export interface therapeuticGroup {
   id: number;
-  therapeuticgroupname: string;
+  therapeuticGroupName: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class therapeuticGroupService {
+export class TherapeuticGroupService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/therapeutic-group';
 

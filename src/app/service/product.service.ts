@@ -1,25 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable,} from 'rxjs';
+import { productChannelDetail } from './productchanneldetail.service';
+import { activePrinciple } from './activeprinciple.service';
+import { therapeuticGroup } from './therapeuticgroup.service';
+import { pharmaceuticalForm } from './pharmaceuticalform.service';
+import { HolderService } from './holder.service';
 
 export interface product {
   id: number;
   record: string;
-  holderemail: string;
+  holderEmail: string;
   concentration: string;
-  registerstatus: string;
-  institutionalchannelfk: string;
-  comertialchannelfK: string;
-  activeprinciplefk: string;
-  terapeuticgroupfk: string;
-  pharmaceuticalformfk: string;
-  holderfk: string;
+  registerStatus: string;
+  institutionalChannelFK: productChannelDetail;
+  activePrincipleFK: activePrinciple;
+  terapeuticGroupFK: therapeuticGroup;
+  pharmaceuticalFormFK: pharmaceuticalForm;
+  holderFK: HolderService;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class productService {
+export class ProductService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/product';
 

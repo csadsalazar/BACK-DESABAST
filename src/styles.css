@@ -1,13 +1,13 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 .custom-chip-green {
-  background-color: #42ab49 !important;
+  background-color: #42ab49af !important;
   color: white;
 }
 
 .custom-chip-yellow {
-  background-color: #ff9800 !important;
-  color: white;
+  background-color: #ffaf3886 !important;
+  color: #FF9800;
 }
 
 .custom-chip-brown {
@@ -26,8 +26,8 @@
 }
 
 .custom-chip-purple {
-  background-color: #7f00b2 !important;
-  color: white;
+  background-color: #e0b4ec !important;
+  color: #7404a4;
 }
 
 .custom-chip-basic{
@@ -37,7 +37,6 @@
 #options{
     background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
     }
-
 
   .footer{
     background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
