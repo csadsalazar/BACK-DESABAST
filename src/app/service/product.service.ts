@@ -14,6 +14,7 @@ export interface product {
   concentration: string;
   registerStatus: string;
   institutionalChannelFK: productChannelDetail;
+  comertialChannelFK: productChannelDetail;
   activePrincipleFK: activePrinciple;
   terapeuticGroupFK: therapeuticGroup;
   pharmaceuticalFormFK: pharmaceuticalForm;

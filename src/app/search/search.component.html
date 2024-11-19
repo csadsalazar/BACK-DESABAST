@@ -54,48 +54,57 @@
         <div class="col-md-6" *ngFor="let principle of activePrinciples">
           <div class="flip-card">
             <div class="flip-card-inner">
+              
               <!-- Parte frontal de la tarjeta -->
               <div class="flip-card-front" [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
-                <mat-card-content>
-                  <mat-card-title>{{ principle.activePrincipleName }} {{ principle.actCode }}</mat-card-title>
-                  <div *ngIf="principle.abastStatusFK.statusAbastName">
-                    <img [src]="getImageClass(principle.abastStatusFK.statusAbastName)" alt="Status Image" class="img-fluid rounded mx-auto d-block"/>
+                <mat-card-content class="flip-card-content">   
+                  <div>
+                    <div *ngIf="principle.abastStatusFK.statusAbastName">
+                      <img [src]="getImageClass(principle.abastStatusFK.statusAbastName)" alt="Status Image" class="mt-5"/>
+                    </div>                    
+                    <div class="card-img-overlay mt-3">
+                      <mat-card-title>{{ principle.activePrincipleName }} {{ principle.actCode }}</mat-card-title>
+                    </div>
                   </div>
                 </mat-card-content>
               </div>
 
               <!-- Parte trasera de la tarjeta -->
-              <div class="flip-card-back" [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
-                <mat-card-content class="text-center">
-                  <div class="row text-center">
-                    <mat-chip-set aria-label="Fish selection">  
-                      <div class="col-md-3 stacked">
-                        <mat-card-subtitle>Descripción ATC</mat-card-subtitle>
-                        <mat-chip>
-                          <a class="text-decoration-none text-dark">{{ principle.actDescription || 'Sin expediente' }}</a>
-                        </mat-chip>
+              <div class="flip-card-back list-group" >
+                  <div style="box-shadow: 0 5px 10px #e0b4ec; border-radius: 10px;">
+                    <a class="list-group-item list-group-item-action">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h3 class="mb-1 fw-bold">Descripción ATC</h3>
                       </div>
-                      <div class="col-md-6 stacked">
-                        <mat-card-subtitle>Estado abastecimiento</mat-card-subtitle>
-                        <mat-chip>
-                          <a class="text-decoration-none">{{ principle.abastStatusFK.statusAbastName || 'Sin estado' }}</a>
-                        </mat-chip>
+                      <p class="mb-1">{{ principle.actDescription || 'Sin expediente' }}</p>
+                    </a>
+
+                    <a class="list-group-item list-group-item-action">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h3 class="mb-1 fw-bold">Estado de abastecimiento</h3>
                       </div>
-                      <div class="col-md-3 stacked">
-                        <mat-card-subtitle>Código ATC</mat-card-subtitle>
-                        <mat-chip>
-                          <a class="text-decoration-none">{{ principle.actCode || 'Sin código' }}</a>
-                        </mat-chip>
+                      <p class="mb-1">{{ principle.abastStatusFK.statusAbastName || 'Sin estado' }}</p>
+                    </a>
+
+                    <a class="list-group-item list-group-item-action">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h3 class="mb-1 fw-bold">Codigo ATC</h3>
                       </div>
-                    </mat-chip-set>
+                      <p class="mb-1">{{ principle.actCode || 'Sin código' }}</p>
+                    </a>
+                    
+                    <a class="list-group-item list-group-item-action">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1 fw-bold">Información importante</h5>
+                      </div>
+                      <p class="mb-1">Para más detalles sobre el principio activo, haz clic en cualquier sección del recuadro.</p>
+                    </a>
                   </div>
-                  <a href="#" class="btn btn-light">Ver más</a>
-                </mat-card-content>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
 
       <ng-template #noProductos>
         <p *ngIf="!isLoading && !errorMessage">No se encontraron productos.</p>
