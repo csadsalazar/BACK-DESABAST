@@ -34,6 +34,38 @@
  color: black;
 }
 
+/* Box Shadow Cards*/
+.custom-box-green {
+  box-shadow: 0 5px 10px #42ab49af; border-radius: 10px;
+}
+
+.custom-chip-yellow {
+  box-shadow: 0 5px 10px #ffaf3886; border-radius: 10px;
+
+}
+
+.custom-chip-brown {
+  box-shadow: 0 5px 10px #c19982; border-radius: 10px;
+
+}
+
+.custom-chip-red {
+  box-shadow: 0 5px 10px #e2504c; border-radius: 10px;
+
+}
+
+.custom-chip-cyan {
+  box-shadow: 0 5px 10px #00cbcc; border-radius: 10px;
+}
+
+.custom-chip-purple {
+  box-shadow: 0 5px 10px #e0b4ec; border-radius: 10px;
+}
+
+.custom-chip-basic{
+  box-shadow: 0 5px 10px #000000; border-radius: 10px;
+}
+
 #options{
     background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);
     }

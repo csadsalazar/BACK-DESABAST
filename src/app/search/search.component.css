@@ -80,3 +80,21 @@
 .card-body {
   overflow: hidden;
 }
+
+.custom-btn {
+  color: #139EC8;
+  border: 2px solid #139EC8;
+  border-radius: 4px;
+  font-weight: bold;
+  padding: 14px 20px;
+}
+
+.custom-btn:hover {
+  background-color: #139EC8;
+  color: white;
+}
+
+.custom-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(19, 158, 200, 0.5);
+}

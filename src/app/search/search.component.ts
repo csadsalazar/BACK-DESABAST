@@ -38,6 +38,7 @@ export class SearchComponent implements OnInit {
   constructor(private activePrincipleService: ActivePrincipleService) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.loadActivePrinciples();
   }
 
@@ -78,6 +79,26 @@ export class SearchComponent implements OnInit {
         return ''; // Si no hay estado, no aplicamos ninguna clase
     }
   }
+
+    // Método para obtener la clase de la tarjeta
+    getBoxClass(status: string): string {
+      switch (status) {
+        case 'Desabastecido':
+          return 'custom-box-red';
+        case 'Descontinuado':
+          return 'custom-box-purple';
+        case 'En monitorización':
+          return 'custom-box-yellow';
+        case 'No hay desabastecimiento':
+          return 'custom-box-green';
+        case 'Riesgo de desabastecimiento':
+          return 'custom-box-brown';
+        case 'Temporalmente no comercializado':
+          return 'custom-box-cyan';  
+        default:
+          return ''; // Si no hay estado, no aplicamos ninguna clase
+      }
+    }
 
   // Método para obtener la clase de la imagen
   getImageClass(status: string): string {

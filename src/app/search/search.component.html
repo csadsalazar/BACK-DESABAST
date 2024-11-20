@@ -8,46 +8,41 @@
       </nav>
       
       <!-- Card con el título -->
-      <mat-card class="mc-1" style="background: linear-gradient(90deg, #139EC8 0%, #01599A 100%);">
+      <mat-card class="mc-1">
         <mat-card-header>
-          <h1 class="ml-2 text-white"><strong>RESULTADOS</strong></h1>
+          <h1 class="ml-2 text-dark"><strong>RESULTADOS</strong></h1>
         </mat-card-header> 
-
+      
         <mat-card-content class="container-fluid">
-          <div class="row d-flex align-items-center">
+          <div class="row g-4">
             
             <!-- Buscador -->
-            <div class="col-12 col-md-4 mb-3">
+            <div class="col-12 col-md-4">
               <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Buscar...</mat-label>
-                <!-- Agregar control dentro de mat-form-field -->
-                <input matInput  placeholder="Buscar">
+                <input matInput placeholder="Buscar" class="w-100">
               </mat-form-field>
             </div>
-    
+      
             <!-- Filtro de Estado Abastecimiento -->
-            <div class="col-12 col-md-4 mb-3">
+            <div class="col-12 col-md-4">
               <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Estado Abastecimiento</mat-label>
-                <!-- Agregar control select dentro de mat-form-field -->
-                <mat-select >
+                <mat-select class="w-100">
                   <mat-option>Prueba</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
-    
-            <!-- Enlace de descarga -->
-            <div class="col-12 col-md-4 mb-3 text-md-right">
-              <button mat-button class="btn text-white">Descargar reporte</button>
+      
+            <!-- Botón de descarga -->
+            <div class="col-12 col-md-4">
+              <button class="btn w-100 custom-btn">Descargar reporte</button>
             </div>
+      
           </div>
         </mat-card-content>
-      </mat-card>    
-
-      <!-- Indicador de carga -->
-      <div *ngIf="isLoading" class="text-center">
-        <mat-spinner></mat-spinner> <!-- Puedes usar MatSpinner o cualquier otro indicador de carga -->
-      </div>
+      </mat-card>
+          
 
       <!-- Cards -->
       <div class="row g-4 mt-4" *ngIf="!isLoading && activePrinciples.length > 0; else noProductos">
@@ -70,30 +65,30 @@
               </div>
 
               <!-- Parte trasera de la tarjeta -->
-              <div class="flip-card-back list-group" >
-                  <div style="box-shadow: 0 5px 10px #e0b4ec; border-radius: 10px;">
-                    <a class="list-group-item list-group-item-action">
+              <div class="flip-card-back list-group">
+                  <div [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
+                    <a [routerLink]="['/']" class="list-group-item list-group-item-action">
                       <div class="d-flex w-100 justify-content-between">
                         <h3 class="mb-1 fw-bold">Descripción ATC</h3>
                       </div>
                       <p class="mb-1">{{ principle.actDescription || 'Sin expediente' }}</p>
                     </a>
 
-                    <a class="list-group-item list-group-item-action">
+                    <a [routerLink]="['/']" class="list-group-item list-group-item-action">
                       <div class="d-flex w-100 justify-content-between">
                         <h3 class="mb-1 fw-bold">Estado de abastecimiento</h3>
                       </div>
                       <p class="mb-1">{{ principle.abastStatusFK.statusAbastName || 'Sin estado' }}</p>
                     </a>
 
-                    <a class="list-group-item list-group-item-action">
+                    <a [routerLink]="['/']" class="list-group-item list-group-item-action">
                       <div class="d-flex w-100 justify-content-between">
                         <h3 class="mb-1 fw-bold">Codigo ATC</h3>
                       </div>
                       <p class="mb-1">{{ principle.actCode || 'Sin código' }}</p>
                     </a>
                     
-                    <a class="list-group-item list-group-item-action">
+                    <a [routerLink]="['/']" class="list-group-item list-group-item-action">
                       <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1 fw-bold">Información importante</h5>
                       </div>
@@ -110,6 +105,13 @@
         <p *ngIf="!isLoading && !errorMessage">No se encontraron productos.</p>
         <p *ngIf="errorMessage">{{ errorMessage }}</p>
       </ng-template>
+
+      <div class="row d-flex align-items-center">
+        <!-- Indicador de carga -->
+      <div *ngIf="isLoading" class="text-center">
+        <mat-spinner></mat-spinner> <!-- Puedes usar MatSpinner o cualquier otro indicador de carga -->
+      </div>
+      </div>
 
       <div class="d-flex justify-content-center mt-5">
         <!-- Aquí puedes agregar algún control de paginación o más acciones -->
