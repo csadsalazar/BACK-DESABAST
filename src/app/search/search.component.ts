@@ -49,7 +49,6 @@ export class SearchComponent implements OnInit {
     this.activePrincipleService.list().subscribe(
       (data) => {
         this.activePrinciples = data;
-        console.log(data)
         this.isLoading = false; // Datos cargados, ocultar indicador de carga
       },
       (error) => {

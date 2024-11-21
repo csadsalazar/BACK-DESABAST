@@ -1,1 +1,33 @@
-<p>seeprinciple works!</p>
+<div *ngIf="isLoading">
+  <mat-spinner></mat-spinner> <!-- Indicador de carga -->
+</div>
+
+<div *ngIf="errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
+
+<div *ngIf="principle">
+  <h2>{{ principle.activePrincipleName }} ({{ principle.actCode }})</h2>
+  <p><strong>Descripción ATC:</strong> {{ principle.actDescription || 'No disponible' }}</p>
+  <p><strong>Estado de Abastecimiento:</strong> {{ principle.abastStatusFK.statusAbastName }}</p>
+  <p><strong>Código ATC:</strong> {{ principle.actCode }}</p>
+  <p><strong>Resumen:</strong> {{ principle.summary || 'No disponible' }}</p>
+  <p><strong>Fecha de seguimiento inicial:</strong> {{ principle.initialFollowUp | date }}</p>
+  <p><strong>Fecha de seguimiento final:</strong> {{ principle.finalFollowUp | date }}</p>
+
+  <!-- Mostrar lista de productos -->
+  <div *ngIf="principle.productList && principle.productList.length > 0">
+    <h3>Productos asociados:</h3>
+    <ul>
+      <li *ngFor="let product of principle.productList">
+        <p><strong>Producto:</strong> {{ product.record }}</p>
+        <p><strong>Concentración:</strong> {{ product.concentration }}</p>
+        <p><strong>Estado de Registro:</strong> {{ product.registerStatus }}</p>
+        <!-- Puedes agregar más campos de producto según lo necesites -->
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="principle.productList.length === 0">
+    <p>No hay productos asociados a este principio activo.</p>
+  </div>
+</div>

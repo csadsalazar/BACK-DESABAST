@@ -67,28 +67,28 @@
               <!-- Parte trasera de la tarjeta -->
               <div class="flip-card-back list-group">
                   <div [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
-                    <a [routerLink]="['/']" class="list-group-item list-group-item-action">
+                    <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
                       <div class="d-flex w-100 justify-content-between">
                         <h3 class="mb-1 fw-bold">Descripción ATC</h3>
                       </div>
                       <p class="mb-1">{{ principle.actDescription || 'Sin expediente' }}</p>
                     </a>
 
-                    <a [routerLink]="['/']" class="list-group-item list-group-item-action">
+                    <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
                       <div class="d-flex w-100 justify-content-between">
                         <h3 class="mb-1 fw-bold">Estado de abastecimiento</h3>
                       </div>
                       <p class="mb-1">{{ principle.abastStatusFK.statusAbastName || 'Sin estado' }}</p>
                     </a>
 
-                    <a [routerLink]="['/']" class="list-group-item list-group-item-action">
+                    <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
                       <div class="d-flex w-100 justify-content-between">
                         <h3 class="mb-1 fw-bold">Codigo ATC</h3>
                       </div>
                       <p class="mb-1">{{ principle.actCode || 'Sin código' }}</p>
                     </a>
                     
-                    <a [routerLink]="['/']" class="list-group-item list-group-item-action">
+                    <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
                       <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1 fw-bold">Información importante</h5>
                       </div>

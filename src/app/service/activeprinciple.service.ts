@@ -4,6 +4,7 @@ import { Observable,} from 'rxjs';
 import { abastStatus } from './abaststatus.service';
 import { cause } from './cause.service';
 import { technicalDetail } from './technicaldetail.service';
+import { product } from './product.service';
 
 export interface activePrinciple {
   id: number;
@@ -14,10 +15,12 @@ export interface activePrinciple {
   finalFollowUp: Date;
   finishDate: Date;
   summary: string;
-  abastStatusFK: abastStatus;  // Relación con AbastStatusDTO
+  abastStatusFK: abastStatus;
   causeFK: cause;
   technicalDetailFK: technicalDetail;
+  productList: product[];  // Aquí debe ser un array de productos
 }
+
 
 @Injectable({
   providedIn: 'root'
