@@ -5,7 +5,7 @@ import { productChannelDetail } from './productchanneldetail.service';
 import { activePrinciple } from './activeprinciple.service';
 import { therapeuticGroup } from './therapeuticgroup.service';
 import { pharmaceuticalForm } from './pharmaceuticalform.service';
-import { HolderService } from './holder.service';
+import { holder, HolderService } from './holder.service';
 
 export interface product {
   id: number;
@@ -18,7 +18,7 @@ export interface product {
   activePrincipleFK: activePrinciple;
   terapeuticGroupFK: therapeuticGroup;
   pharmaceuticalFormFK: pharmaceuticalForm;
-  holderFK: HolderService;
+  holderFK: holder;
 }
 
 @Injectable({

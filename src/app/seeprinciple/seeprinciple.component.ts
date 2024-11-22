@@ -3,33 +3,51 @@ import { ActivatedRoute } from '@angular/router';
 import { ActivePrincipleService, activePrinciple } from '../service/activeprinciple.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+// Importar módulos de Angular Material
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
+
 
 @Component({
   selector: 'app-seeprinciple',
   standalone: true,
   imports: [
+    RouterLink,
     CommonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatStepperModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatSelectModule
   ],
   templateUrl: './seeprinciple.component.html',
   styleUrl: './seeprinciple.component.css'
 })
 export class SeeprincipleComponent implements OnInit {
-  principle: activePrinciple | null = null; // Variable para almacenar los detalles del principio activo
-  isLoading: boolean = true; // Indicador de carga
-  errorMessage: string = ''; // Para mensajes de error
+  principle: activePrinciple | null = null;
+  isLoading: boolean = true;
+  errorMessage: string = '';
+  notas: { label: string, content: string }[] = []; // Notas dinámicas para los tabs
 
   constructor(
-    private route: ActivatedRoute, // Para acceder a los parámetros de la ruta
-    private activePrincipleService: ActivePrincipleService // Para obtener los detalles del principio activo
+    private route: ActivatedRoute,
+    private activePrincipleService: ActivePrincipleService
   ) {}
 
   ngOnInit(): void {
-    // Obtener el ID de la URL
     const id = this.route.snapshot.paramMap.get('id');
-    
     if (id) {
-      // Cargar los detalles del principio activo usando el ID
       this.loadPrincipleDetail(parseInt(id, 10));
     }
   }
@@ -41,7 +59,7 @@ export class SeeprincipleComponent implements OnInit {
     this.activePrincipleService.get(id).subscribe(
       (data) => {
         this.principle = data;
-        console.log('Principio Activo:', data);  // Agrega este log
+        this.createTabs(); // Crea los tabs dinámicos después de cargar los datos
         this.isLoading = false;
       },
       (error) => {
@@ -51,5 +69,26 @@ export class SeeprincipleComponent implements OnInit {
       }
     );
   }
-  
+
+  // Función para crear dinámicamente los tabs a partir de los productos
+  createTabs(): void {
+    if (this.principle?.productList) {
+      this.notas = this.principle.productList.map(product => ({
+        label: product.holderFK.contactName,  // Título del tab
+        content: `
+
+          <p class="mt-3"><strong>Expediente:</strong> ${product.record}</p>
+          <p><strong>Email Titular:</strong> ${product.holderEmail}</p>
+          <p><strong>Concentración:</strong> ${product.concentration}</p>
+          <p><strong>Estado de registro:</strong> ${product.registerStatus}</p>
+          <p><strong>Canal institucional:</strong> ${product.institutionalChannelFK.channelTypeFK.name}</p>
+          <p><strong>Canal comercial:</strong> ${product.comertialChannelFK.channelTypeFK.name}</p>
+          <p><strong>Principio activo:</strong> ${product.activePrincipleFK.activePrincipleName}</p>
+          <p><strong>Grupo terapéutico:</strong> ${product.terapeuticGroupFK.therapeuticGroupName}</p>
+          <p><strong>Forma farmacéutica:</strong> ${product.pharmaceuticalFormFK.pharmaceuticalFormName}</p>
+          <p><strong>Titular:</strong> ${product.holderFK.contactName}</p>
+        `
+      }));
+    }
+  }
 }
