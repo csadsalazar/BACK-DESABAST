@@ -5,12 +5,14 @@ import { abastStatus } from './abaststatus.service';
 import { cause } from './cause.service';
 import { technicalDetail } from './technicaldetail.service';
 import { product } from './product.service';
+import { pharmaceuticalForm } from './pharmaceuticalform.service';
 
 export interface activePrinciple {
   id: number;
   activePrincipleName: string;
   actCode: string;
   actDescription: string;
+  concentration: string;
   initialFollowUp: Date;
   finalFollowUp: Date;
   finishDate: Date;
@@ -18,6 +20,7 @@ export interface activePrinciple {
   abastStatusFK: abastStatus;
   causeFK: cause;
   technicalDetailFK: technicalDetail;
+  pharmaceuticalFormFK: pharmaceuticalForm;
   productList: product[];  // Aquí debe ser un array de productos
 }
 

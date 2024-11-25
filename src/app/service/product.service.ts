@@ -4,20 +4,17 @@ import { Observable,} from 'rxjs';
 import { productChannelDetail } from './productchanneldetail.service';
 import { activePrinciple } from './activeprinciple.service';
 import { therapeuticGroup } from './therapeuticgroup.service';
-import { pharmaceuticalForm } from './pharmaceuticalform.service';
-import { holder, HolderService } from './holder.service';
+import { holder } from './holder.service';
 
 export interface product {
   id: number;
   record: string;
-  holderEmail: string;
-  concentration: string;
+  productName: string;
   registerStatus: string;
   institutionalChannelFK: productChannelDetail;
   comertialChannelFK: productChannelDetail;
   activePrincipleFK: activePrinciple;
   terapeuticGroupFK: therapeuticGroup;
-  pharmaceuticalFormFK: pharmaceuticalForm;
   holderFK: holder;
 }
 

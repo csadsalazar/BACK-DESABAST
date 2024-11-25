@@ -4,7 +4,7 @@ import { Observable,} from 'rxjs';
 
 export interface channelType {
   id: number;
-  name: string;
+  channelTypeName: string;
 }
 
 @Injectable({
