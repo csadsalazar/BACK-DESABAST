@@ -9,38 +9,44 @@
       </nav>
       <div>              
       <mat-card class="mt-4 mb-4" >
-        <mat-card-header>
-          <h1 class="ml-2 text-dark"><strong>RESULTADOS</strong></h1>
-        </mat-card-header> 
         <mat-card-content class="container-fluid">
       <div class="container">
-        <div class="row align-items-start">
-          <div class="col">
-            <p><strong>Principio activo:</strong>{{ principle.activePrincipleName }} ({{ principle.actCode }})</p>
+        <section class="p-2 p-md-2 p-xl-3">
+          <div class="container">
+            <h1><strong>Resumen general</strong></h1>
           </div>
-          <div class="col">
-            <p><strong>Descripción ATC:</strong> {{ principle.actDescription || 'No disponible' }}</p>          
+          <hr>
+          <div class="row">
+            <div class="col-md-4">
+              <h4><strong>Principio activo:</strong></h4>
+              <p class="text-left">{{ principle.activePrincipleName }} ({{ principle.actCode }})</p>
+            </div>
+            <div class="col-md-4">
+              <h4><strong>Descripción ATC:</strong></h4>
+              <p class="text-left">{{ principle.actDescription || 'No disponible' }}</p>
+            </div>
+            <div class="col-md-4">
+              <h4><strong>Fecha de seguimiento inicial:</strong></h4>
+              <p class="text-left">{{ principle.initialFollowUp | date }}</p>
+            </div>
+            <div class="col-md-4">
+              <h4><strong>Estado de Abastecimiento:</strong></h4>
+              <p class="text-left">{{ principle.abastStatusFK.statusAbastName }}</p>
+            </div>
+            <div class="col-md-4">
+              <h4><strong>Código ATC:</strong></h4>
+              <p class="text-left">{{ principle.actCode }}</p>
+            </div>
+            <div class="col-md-4">
+              <h4><strong>Fecha ultimo seguimiento:</strong></h4>
+              <p class="text-left">{{ principle.finalFollowUp | date }}</p>
+            </div>
+            <div class="col-md-4">
+              <h4><strong>Resumen:</strong></h4>
+              <p class="text-left">{{ principle.summary || 'No disponible' }}</p>
+            </div>
           </div>
-          <div class="col">
-            <p><strong>Fecha de seguimiento inicial:</strong> {{ principle.initialFollowUp | date }}</p>
-          </div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col">
-            <p><strong>Estado de Abastecimiento:</strong>{{ principle.abastStatusFK.statusAbastName }}</p>
-          </div>
-          <div class="col">
-            <p><strong>Código ATC:</strong> {{ principle.actCode }}</p>
-          </div>
-          <div class="col">
-            <p><strong>Fecha de seguimiento final:</strong> {{ principle.finalFollowUp | date }}</p>        
-          </div>
-        </div>
-        <div class="row align-items-end">
-          <div class="col">
-            <p><strong>Resumen:</strong> {{ principle.summary || 'No disponible' }}</p>
-          </div>
-        </div>
+        </section>
       </div>
     </mat-card-content>
   </mat-card>

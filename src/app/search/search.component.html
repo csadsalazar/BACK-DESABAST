@@ -15,41 +15,71 @@
       
         <mat-card-content class="container-fluid">
           <div class="row g-4">
-            
             <!-- Buscador -->
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6">
               <mat-form-field appearance="fill" class="w-100">
                 <mat-label>Buscar...</mat-label>
-                <input matInput placeholder="Buscar" class="w-100">
+                <input matInput placeholder="Buscar" class="w-100" [(ngModel)]="searchQuery" (input)="filterPrinciples()">
               </mat-form-field>
-            </div>
-      
-            <!-- Filtro de Estado Abastecimiento -->
-            <div class="col-12 col-md-4">
-              <mat-form-field appearance="fill" class="w-100">
-                <mat-label>Estado Abastecimiento</mat-label>
-                <mat-select class="w-100">
-                  <mat-option>Prueba</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-      
+            </div>      
             <!-- Botón de descarga -->
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6">
               <button class="btn w-100 custom-btn">Descargar reporte</button>
             </div>
-      
           </div>
+          <div class="mt-3">
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <strong>Más filtros</strong>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="row g-4">
+                <!-- Filtro de Estado Abastecimiento -->
+                <div class="col-12 col-md-4">
+                  <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Estado Abastecimiento</mat-label>
+                    <mat-select class="w-100">
+                      <mat-option>Prueba</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+    
+                <!-- Filtro de Estado Abastecimiento -->
+                <div class="col-12 col-md-4">
+                  <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Forma Farmaceutica</mat-label>
+                    <mat-select class="w-100">
+                      <mat-option>Prueba</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+          
+                <!-- Filtro de Estado Abastecimiento -->
+                <div class="col-12 col-md-4">
+                  <mat-form-field appearance="fill" class="w-100">
+                    <mat-label>Codigo ATC</mat-label>
+                    <mat-select class="w-100">
+                      <mat-option>Prueba</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
         </mat-card-content>
       </mat-card>
           
 
       <!-- Cards -->
-      <div class="row g-4 mt-4" *ngIf="!isLoading && activePrinciples.length > 0; else noProductos">
-        <div class="col-md-6" *ngFor="let principle of activePrinciples">
+      <div class="row g-4 mt-4" *ngIf="!isLoading && filteredPrinciples.length > 0; else noProductos">
+        <div class="col-md-6" *ngFor="let principle of filteredPrinciples">
           <div class="flip-card">
             <div class="flip-card-inner">
-              
               <!-- Parte frontal de la tarjeta -->
               <div class="flip-card-front" [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
                 <mat-card-content class="flip-card-content">   
@@ -66,55 +96,61 @@
 
               <!-- Parte trasera de la tarjeta -->
               <div class="flip-card-back list-group">
-                  <div [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
-                    <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h3 class="mb-1 fw-bold">Descripción ATC</h3>
-                      </div>
-                      <p class="mb-1">{{ principle.actDescription || 'Sin expediente' }}</p>
-                    </a>
+                <div [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
+                  <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h3 class="mb-1 fw-bold">Descripción ATC</h3>
+                    </div>
+                    <p class="mb-1">{{ principle.actDescription || 'Sin expediente' }}</p>
+                  </a>
 
-                    <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h3 class="mb-1 fw-bold">Estado de abastecimiento</h3>
-                      </div>
-                      <p class="mb-1">{{ principle.abastStatusFK.statusAbastName || 'Sin estado' }}</p>
-                    </a>
+                  <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h3 class="mb-1 fw-bold">Estado de abastecimiento</h3>
+                    </div>
+                    <p class="mb-1">{{ principle.abastStatusFK.statusAbastName || 'Sin estado' }}</p>
+                  </a>
 
-                    <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h3 class="mb-1 fw-bold">Codigo ATC</h3>
-                      </div>
-                      <p class="mb-1">{{ principle.actCode || 'Sin código' }}</p>
-                    </a>
-                    
-                    <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1 fw-bold">Información importante</h5>
-                      </div>
-                      <p class="mb-1">Para más detalles sobre el principio activo, haz clic en cualquier sección del recuadro.</p>
-                    </a>
-                  </div>
-                  </div>
+                  <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h3 class="mb-1 fw-bold">Codigo ATC</h3>
+                    </div>
+                    <p class="mb-1">{{ principle.actCode || 'Sin código' }}</p>
+                  </a>
+                  
+                  <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-1 fw-bold">Información importante</h5>
+                    </div>
+                    <p class="mb-1">Para más detalles sobre el principio activo, haz clic en cualquier sección del recuadro.</p>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-
-      <ng-template #noProductos>
-        <p *ngIf="!isLoading && !errorMessage">No se encontraron productos.</p>
-        <p *ngIf="errorMessage">{{ errorMessage }}</p>
-      </ng-template>
-
-      <div class="row d-flex align-items-center">
-        <!-- Indicador de carga -->
-      <div *ngIf="isLoading" class="text-center">
-        <mat-spinner></mat-spinner> <!-- Puedes usar MatSpinner o cualquier otro indicador de carga -->
-      </div>
+        </div>
       </div>
 
-      <div class="d-flex justify-content-center mt-5">
-        <!-- Aquí puedes agregar algún control de paginación o más acciones -->
+      <div class="container mt-3">
+        <ng-template #noProductos>
+          <p *ngIf="!isLoading && !errorMessage">No se encontraron productos.</p>
+          <p *ngIf="errorMessage">{{ errorMessage }}</p>
+        </ng-template>
+  
+        <div class="row d-flex align-items-center">
+          <!-- Indicador de carga -->
+        <div *ngIf="isLoading" class="text-center">
+          <mat-spinner></mat-spinner> <!-- Puedes usar MatSpinner o cualquier otro indicador de carga -->
+        </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-center mt-5 b">
+        <mat-paginator [length]="100"
+        [pageSize]="10"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        aria-label="Seleccionar pagina" class="bg-light">
+        </mat-paginator>
       </div>
     </div>
   </div>

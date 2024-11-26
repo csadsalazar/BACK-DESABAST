@@ -81,7 +81,7 @@ export class SeeprincipleComponent implements OnInit {
             <h1> <strong>Resumen general</strong></h1>
           </div>
           <div class="container">
-            <mat-card-title><strong>Descripción del producto</strong></mat-card-title>
+            <h3><strong>Descripción del producto</strong></h3>
             <hr>
             <div class="row">
               <div class="col-md-4">
@@ -89,27 +89,27 @@ export class SeeprincipleComponent implements OnInit {
                 <p class="text-left">${product.terapeuticGroupFK.therapeuticGroupName}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title>Producto</mat-card-title>
+                <mat-card-title><strong>Producto</strong></mat-card-title>
                 <p class="text-left">${product.productName}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title>Estado abastecimiento</mat-card-title>
+                <mat-card-title><strong>Estado abastecimiento</strong></mat-card-title>
                 <p class="text-left">${product.activePrincipleFK.abastStatusFK.statusAbastName}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title >Forma farmaceutica</mat-card-title>
+                <mat-card-title><strong>Forma farmaceutica</strong></mat-card-title>
                 <p class="text-left">${product.activePrincipleFK.pharmaceuticalFormFK.pharmaceuticalFormName}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title>Codigo ATC</mat-card-title>
+                <mat-card-title><strong>Codigo ATC</strong></mat-card-title>
                 <p class="text-left">${product.activePrincipleFK.actCode}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title >Titular</mat-card-title>
+                <mat-card-title><strong>Titular</strong></mat-card-title>
                 <p class="text-left">${product.holderFK.contactName}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title>Concentración</mat-card-title>
+                <mat-card-title><strong>Concentración</strong></mat-card-title>
                 <p class="text-left">${product.activePrincipleFK.concentration}</p>
               </div>
             </div>
@@ -118,31 +118,31 @@ export class SeeprincipleComponent implements OnInit {
 
           <section class="p-2 p-md-2 p-xl-3">
           <div class="container">
-            <mat-card-title><strong>Información de disponibilidad de medicamentos</strong></mat-card-title>
+            <h3><strong>Información de disponibilidad de medicamentos</strong></h3>
             <hr>
             <div class="row">
               <div class="col-md-4">
-                <mat-card-title>Fecha Reporte</mat-card-title>
+                <mat-card-title><strong>Fecha Reporte</strong></mat-card-title>
                 <p class="text-left">${product.activePrincipleFK.technicalDetailFK.reportdate}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title>Estado registro sanitario</mat-card-title>
+                <mat-card-title><strong>Estado registro sanitario</strong></mat-card-title>
                 <p class="text-left">${product.registerStatus}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title>Causas</mat-card-title>
+                <mat-card-title><strong>Causas</strong></mat-card-title>
                 <p class="text-left">${product.activePrincipleFK.causeFK.causeName}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title>Fecha inicio seguimiento</mat-card-title>
+                <mat-card-title><strong>Fecha inicio seguimiento</strong></mat-card-title>
                 <p class="text-left">${product.activePrincipleFK.initialFollowUp}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title>Fecha ultimo seguimiento</mat-card-title>
+                <mat-card-title><strong>Fecha ultimo seguimiento</strong></mat-card-title>
                 <p class="text-left">${product.activePrincipleFK.finalFollowUp}</p>
               </div>
               <div class="col-md-4">
-                <mat-card-title>Fecha cierre</mat-card-title>
+                <mat-card-title><strong>Fecha cierre</strong></mat-card-title>
                 <p class="text-left">${product.activePrincipleFK.finishDate}</p>
               </div>
             </div>
@@ -151,116 +151,116 @@ export class SeeprincipleComponent implements OnInit {
 
         <section class="p-2 p-md-2 p-xl-3">
           <div class="container">
-            <mat-card-title><strong>Información canal institucional</strong></mat-card-title>
+            <h3><strong>Información canal institucional</strong></h3>
             <hr>
             <div class="row">
               <div class="col-md-4">
-                <mat-card-title>Canal institucional</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalchannel }}</p>
+                <mat-card-title><strong>Canal institucional</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.channelTypeFK.channelTypeName}</p>
               </div>
-              <div class="col-md-4" *ngIf="outofstock.institutionalyearone">
-                <mat-card-title>Ventas 2023 (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalyearone }}</p>
+              <div class="col-md-4">
+                <mat-card-title><strong>Ventas ${product.institutionalChannelFK.oneYear} (UMD)</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.saleOne}</p>
               </div>
-              <div class="col-md-4" *ngIf="outofstock.institutionalyeartwo">
-                <mat-card-title>Ventas 2024 (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalyeartwo }}</p>
+              <div class="col-md-4">
+                <mat-card-title><strong>Ventas ${product.institutionalChannelFK.twoYear} (UMD)</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.saleTwo}</p>
               </div>
-              <div class="col-md-4" *ngIf="outofstock.institutionalcapmax">
-                <mat-card-title>Capacidad maxima UMD</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalcapmax }}</p>
+              <div class="col-md-4">
+                <mat-card-title><strong>Capacidad maxima UMD</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.maxCapacity}</p>
               </div>
-              <div class="col-md-4" *ngIf="outofstock.institutionalvalueone">
-                <mat-card-title>Agosto (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalvalueone }}</p>
+              <div class="col-md-4">
+                <mat-card-title><strong>${product.institutionalChannelFK.oneMonth} (UMD)</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.commercialValueOne}</p>
               </div>
-              <div class="col-md-4" *ngIf="outofstock.institutionalvaluetwo">
-                <mat-card-title>Septiembre (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalvaluetwo }}</p>
+              <div class="col-md-4">
+                <mat-card-title><strong>${product.institutionalChannelFK.twoMonth} (UMD)</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.commercialValueTwo}</p>
               </div>
-              <div class="col-md-4" *ngIf="outofstock.institutionalvaluethree">
-                <mat-card-title>Octubre (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalvaluethree }}</p>
+              <div class="col-md-4">
+                <mat-card-title><strong>${product.institutionalChannelFK.threeMonth} (UMD)</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.commercialValueThree}</p>
               </div>
-              <div class="col-md-4" *ngIf="outofstock.institutionalvaluefour">
-                <mat-card-title>Noviembre (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalvaluefour }}</p>
+              <div class="col-md-4">
+                <mat-card-title><strong>${product.institutionalChannelFK.fourMonth} (UMD)</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.commercialValueFour}</p>
               </div>
-              <div class="col-md-4" *ngIf="outofstock.institutionalcurrentstatus">
-                <mat-card-title>Estado actual</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalcurrentstatus }}</p>
+              <div class="col-md-4">
+                <mat-card-title><strong>Estado actual</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.currentStatus}</p>
               </div>
-              <div class="col-md-4" *ngIf="outofstock.institutionalreasonsnottrade">
-                <mat-card-title>Razones no comercialización</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalreasonsnottrade }}</p>
+              <div class="col-md-4">
+                <mat-card-title><strong>Razones no comercialización</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.reasonsNoCommercial}</p>
               </div>
-              <div class="col-md-4" *ngIf="outofstock.institutionalobsnotcommerce">
-                <mat-card-title>Observaciones no comercialización</mat-card-title>
-                <p class="text-left">{{ outofstock.institutionalobsnotcommerce }}</p>
+              <div class="col-md-4">
+                <mat-card-title><strong>Observaciones no comercialización</strong></mat-card-title>
+                <p class="text-left">${product.institutionalChannelFK.observationsNoCommercial}</p>
               </div>
             </div>
           </div>
         </section>
 
         <section class="p-2 p-md-2 p-xl-3">
-          <div class="container">
-            <mat-card-title><strong>Información canal comercial</strong></mat-card-title>
-            <hr>
-            <div class="row">
-              <div class="col-md-4">
-                <mat-card-title>Canal comercial</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialchannel }}</p>
-              </div>
-              <div class="col-md-4" *ngIf="outofstock.commercialyearone">
-                <mat-card-title>Ventas 2023 (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialyearone }}</p>
-              </div>
-              <div class="col-md-4" *ngIf="outofstock.commercialyeartwo">
-                <mat-card-title>Ventas 2024 (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialyeartwo }}</p>
-              </div>
-              <div class="col-md-4" *ngIf="outofstock.commercialcapmax">
-                <mat-card-title>Capacidad maxima UMD</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialcapmax }}</p>
-              </div>
-              <div class="col-md-4" *ngIf="outofstock.commercialvalueone">
-                <mat-card-title>Agosto (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialvalueone }}</p>
-              </div>
-              <div class="col-md-4" *ngIf="outofstock.commercialvaluetwo">
-                <mat-card-title>Septiembre (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialvaluetwo }}</p>
-              </div>
-              <div class="col-md-4" *ngIf="outofstock.commercialvaluethree">
-                <mat-card-title>Octubre (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialvaluethree }}</p>
-              </div>
-              <div class="col-md-4" *ngIf="outofstock.commercialvaluefour">
-                <mat-card-title>Noviembre (UMD)</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialvaluefour }}</p>
-              </div>
-              <div class="col-md-4" *ngIf="outofstock.commercialcurrentstatus">
-                <mat-card-title>Estado actual</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialcurrentstatus }}</p>
-              </div>
-              <div class="col-md-4" *ngIf="outofstock.commercialreasonsnottrade">
-                <mat-card-title>Razones no comercialización</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialreasonsnottrade }}</p>
-              </div>
-              <div class="col-md-4" *ngIf="outofstock.commercialobsnotcommerce">
-                <mat-card-title>Observaciones no comercialización</mat-card-title>
-                <p class="text-left">{{ outofstock.commercialobsnotcommerce }}</p>
+            <div class="container">
+              <h3><strong>Información canal comercial</strong></h3>
+              <hr>
+              <div class="row">
+                <div class="col-md-4">
+                  <mat-card-title><strong>Canal institucional</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.channelTypeFK.channelTypeName}</p>
+                </div>
+                <div class="col-md-4">
+                  <mat-card-title><strong>Ventas ${product.comertialChannelFK.oneYear} (UMD)</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.saleOne}</p>
+                </div>
+                <div class="col-md-4">
+                  <mat-card-title><strong>Ventas ${product.comertialChannelFK.twoYear} (UMD)</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.saleTwo}</p>
+                </div>
+                <div class="col-md-4">
+                  <mat-card-title><strong>Capacidad maxima UMD</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.maxCapacity}</p>
+                </div>
+                <div class="col-md-4">
+                  <mat-card-title><strong>${product.comertialChannelFK.oneMonth} (UMD)</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.commercialValueOne}</p>
+                </div>
+                <div class="col-md-4">
+                  <mat-card-title><strong>${product.comertialChannelFK.twoMonth} (UMD)</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.commercialValueTwo}</p>
+                </div>
+                <div class="col-md-4">
+                  <mat-card-title><strong>${product.comertialChannelFK.threeMonth} (UMD)</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.commercialValueThree}</p>
+                </div>
+                <div class="col-md-4">
+                  <mat-card-title><strong>${product.comertialChannelFK.fourMonth} (UMD)</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.commercialValueFour}</p>
+                </div>
+                <div class="col-md-4">
+                  <mat-card-title><strong>Estado actual</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.currentStatus}</p>
+                </div>
+                <div class="col-md-4">
+                  <mat-card-title><strong>Razones no comercialización</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.reasonsNoCommercial}</p>
+                </div>
+                <div class="col-md-4">
+                  <mat-card-title><strong>Observaciones no comercialización</strong></mat-card-title>
+                  <p class="text-left">${product.comertialChannelFK.observationsNoCommercial}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
         <section class="p-2 p-md-2 p-xl-3">
           <div class="container">
-            <mat-card-title><strong>Resumen</strong></mat-card-title>
+            <h3><strong>Resumen</strong></h3>
             <hr>
-            <mat-card-title>Observaciones Invima</mat-card-title>
-            <p class="text-left">{{ outofstock.resofinv }}</p>
+            <mat-card-title><strong>Observaciones Invima</strong></mat-card-title>
+            <p class="text-left">${product.activePrincipleFK.summary}</p>
           </div>
         </section>
 

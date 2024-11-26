@@ -10,6 +10,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-search',
@@ -24,7 +27,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatChipsModule,
     MatSelectModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatRadioModule,
+    MatExpansionModule
   ],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
@@ -32,8 +38,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 export class SearchComponent implements OnInit {
   activePrinciples: activePrinciple[] = []; // Lista para almacenar datos
+  filteredPrinciples: activePrinciple[] = []; // Lista filtrada de principios activos
   isLoading: boolean = false; // Indicador de carga
   errorMessage: string = ''; // Para mostrar mensajes de error
+  searchQuery: string = ''; // Texto de búsqueda
+  panelOpenState = false;
 
   constructor(private activePrincipleService: ActivePrincipleService) {}
 
@@ -49,6 +58,7 @@ export class SearchComponent implements OnInit {
     this.activePrincipleService.list().subscribe(
       (data) => {
         this.activePrinciples = data;
+        this.filteredPrinciples = data; // Inicialmente, mostrar todos los principios activos
         this.isLoading = false; // Datos cargados, ocultar indicador de carga
       },
       (error) => {
@@ -56,6 +66,18 @@ export class SearchComponent implements OnInit {
         this.errorMessage = 'No se pudieron cargar los datos.';
         this.isLoading = false; // Ocultar indicador de carga
       }
+    );
+  }
+
+  // Método para filtrar los principios activos
+  filterPrinciples(): void {
+    const query = this.searchQuery.toLowerCase();
+    
+    // Filtrar los principios activos por nombre, concentración o forma farmacéutica
+    this.filteredPrinciples = this.activePrinciples.filter(principle =>
+      principle.activePrincipleName.toLowerCase().includes(query) ||
+      principle.pharmaceuticalFormFK.pharmaceuticalFormName.toLowerCase().includes(query) ||
+      principle.concentration.toLowerCase().includes(query)
     );
   }
 
@@ -78,26 +100,6 @@ export class SearchComponent implements OnInit {
         return ''; // Si no hay estado, no aplicamos ninguna clase
     }
   }
-
-    // Método para obtener la clase de la tarjeta
-    getBoxClass(status: string): string {
-      switch (status) {
-        case 'Desabastecido':
-          return 'custom-box-red';
-        case 'Descontinuado':
-          return 'custom-box-purple';
-        case 'En monitorización':
-          return 'custom-box-yellow';
-        case 'No hay desabastecimiento':
-          return 'custom-box-green';
-        case 'Riesgo de desabastecimiento':
-          return 'custom-box-brown';
-        case 'Temporalmente no comercializado':
-          return 'custom-box-cyan';  
-        default:
-          return ''; // Si no hay estado, no aplicamos ninguna clase
-      }
-    }
 
   // Método para obtener la clase de la imagen
   getImageClass(status: string): string {
