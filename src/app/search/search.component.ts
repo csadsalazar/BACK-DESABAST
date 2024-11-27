@@ -117,7 +117,7 @@ export class SearchComponent implements OnInit {
       case 'Temporalmente no comercializado':
         return 'assets/images/backgrounds/no comercializado.png';  
       default:
-        return ''; // Si no hay estado, no mostramos ninguna imagen
+        return 'assets/images/backgrounds/base.png';
     }
   }
 }
