@@ -1,46 +1,12 @@
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-.custom-chip-green {
-  background-color: #42ab49af !important;
-  color: white;
-}
-
-.custom-chip-yellow {
-  background-color: #ffaf3886 !important;
-  color: #FF9800;
-}
-
-.custom-chip-brown {
-  background-color: #c19982 !important;
-  color: white;
-}
-
-.custom-chip-red {
-  background-color: #e2504c !important;
-  color: white;
-}
-
-.custom-chip-cyan {
-  background-color: #00cbcc !important;
-  color: white;
-}
-
-.custom-chip-purple {
-  background-color: #e0b4ec !important;
-  color: #7404a4;
-}
-
-.custom-chip-basic{
- color: black;
-}
-
 /* Box Shadow Cards*/
 .custom-box-green {
-  box-shadow: 0 5px 10px #42ab49af; border-radius: 10px;
+  box-shadow: 0 5px 10px #42ab49; border-radius: 10px;
 }
 
 .custom-chip-yellow {
-  box-shadow: 0 5px 10px #ffaf3886; border-radius: 10px;
+  box-shadow: 0 5px 10px #ff9800; border-radius: 10px;
 
 }
 
@@ -59,7 +25,7 @@
 }
 
 .custom-chip-purple {
-  box-shadow: 0 5px 10px #e0b4ec; border-radius: 10px;
+  box-shadow: 0 5px 10px #7f00b2; border-radius: 10px;
 }
 
 .custom-chip-basic{

@@ -39,34 +39,47 @@
 
               <div class="row g-4">
                 <!-- Filtro de Estado Abastecimiento -->
-                <div class="col-12 col-md-4">
-                  <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Estado Abastecimiento</mat-label>
-                    <mat-select class="w-100">
-                      <mat-option>Prueba</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-    
-                <!-- Filtro de Estado Abastecimiento -->
-                <div class="col-12 col-md-4">
-                  <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Forma Farmaceutica</mat-label>
-                    <mat-select class="w-100">
-                      <mat-option>Prueba</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-          
-                <!-- Filtro de Estado Abastecimiento -->
-                <div class="col-12 col-md-4">
-                  <mat-form-field appearance="fill" class="w-100">
-                    <mat-label>Codigo ATC</mat-label>
-                    <mat-select class="w-100">
-                      <mat-option>Prueba</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
+              <!-- Filtro de Estado Abastecimiento -->
+              <div class="col-12 col-md-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Estado Abastecimiento</mat-label>
+                  <mat-select class="w-100" [(value)]="selectedStatus" (selectionChange)="filterPrinciples()">
+                    <mat-option *ngFor="let status of abastecimientoOptions" [value]="status">
+                      {{ status }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <!-- Filtro de Forma Farmaceutica -->
+              <div class="col-12 col-md-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Forma Farmacéutica</mat-label>
+                  <mat-select class="w-100" [(value)]="selectedPharmaceuticalForm" (selectionChange)="filterPrinciples()">
+                    <mat-option *ngFor="let form of pharmaceuticalFormOptions" [value]="form">
+                      {{ form }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <!-- Filtro de Codigo ATC -->
+              <div class="col-12 col-md-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Código ATC</mat-label>
+                  <mat-select class="w-100" [(value)]="selectedAtcCode" (selectionChange)="filterPrinciples()">
+                    <mat-option *ngFor="let atc of atcCodeOptions" [value]="atc">
+                      {{ atc }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <!-- Botón para limpiar los filtros -->
+              <div class="col-12 col-md-3">
+                <button class="btn w-100 custom-btn" (click)="clearFilters()">Limpiar</button>
+              </div>
+
               </div>
             </mat-expansion-panel>
           </mat-accordion>
@@ -149,7 +162,8 @@
         <mat-paginator [length]="100"
         [pageSize]="10"
         [pageSizeOptions]="[5, 10, 25, 100]"
-        aria-label="Seleccionar pagina" class="bg-light">
+        aria-label="Seleccionar página"
+        class="bg-light">
         </mat-paginator>
       </div>
     </div>

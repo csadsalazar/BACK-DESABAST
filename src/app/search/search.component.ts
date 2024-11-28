@@ -10,7 +10,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
 
@@ -37,15 +37,32 @@ import { MatExpansionModule } from '@angular/material/expansion';
 })
 
 export class SearchComponent implements OnInit {
-  activePrinciples: activePrinciple[] = []; // Lista para almacenar datos
-  filteredPrinciples: activePrinciple[] = []; // Lista filtrada de principios activos
-  isLoading: boolean = false; // Indicador de carga
-  errorMessage: string = ''; // Para mostrar mensajes de error
-  searchQuery: string = ''; // Texto de búsqueda
+  activePrinciples: activePrinciple[] = [];
+  filteredPrinciples: activePrinciple[] = [];
+  isLoading: boolean = false;
+  errorMessage: string = '';
+  searchQuery: string = '';
+  selectedStatus: string = '';
+  selectedAtcCode: string = '';
+  selectedPharmaceuticalForm: string = '';
   panelOpenState = false;
-
-  constructor(private activePrincipleService: ActivePrincipleService) {}
-
+  abastecimientoOptions: string[] = []; // Array for abastecimiento options
+  pharmaceuticalFormOptions: string[] = []; // Array for pharmaceutical form options
+  atcCodeOptions: string[] = []; // Array for ATC code options
+  
+  constructor(private activePrincipleService: ActivePrincipleService, private paginatorIntl: MatPaginatorIntl) {
+        // Personaliza los textos directamente aquí
+        this.paginatorIntl.itemsPerPageLabel = 'Items por página'; // Cambiar "items per page"
+        this.paginatorIntl.nextPageLabel = 'Siguiente página';     // Cambiar "next page"
+        this.paginatorIntl.previousPageLabel = 'Anterior página';  // Cambiar "previous page"
+            // Personaliza el formato del rango (por ejemplo, "1-10 de 200")
+        this.paginatorIntl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+          const start = page * pageSize + 1;
+          const end = Math.min((page + 1) * pageSize, length);
+          return `${start} - ${end} de ${length}`; // Personalizamos "of" a "de"
+        }
+      }
+  
   ngOnInit(): void {
     window.scrollTo(0, 0);
     this.loadActivePrinciples();
@@ -58,22 +75,51 @@ export class SearchComponent implements OnInit {
     this.activePrincipleService.list().subscribe(
       (data) => {
         this.activePrinciples = data;
-        this.filteredPrinciples = data; // Inicialmente, mostrar todos los principios activos
-        this.isLoading = false; // Datos cargados, ocultar indicador de carga
+        this.filteredPrinciples = data; // Initially, show all active principles
+        this.abastecimientoOptions = [...new Set(data.map(p => p.abastStatusFK.statusAbastName))];
+        this.pharmaceuticalFormOptions = [...new Set(data.map(p => p.pharmaceuticalFormFK.pharmaceuticalFormName))];
+        this.atcCodeOptions = [...new Set(data.map(p => p.actCode))];
+        this.isLoading = false;
       },
       (error) => {
         console.error('Error al obtener los principios activos', error);
         this.errorMessage = 'No se pudieron cargar los datos.';
-        this.isLoading = false; // Ocultar indicador de carga
+        this.isLoading = false;
       }
     );
   }
 
-  // Método para filtrar los principios activos
+  // Filter method
   filterPrinciples(): void {
     const query = this.searchQuery.toLowerCase();
-    
-    // Filtrar los principios activos por nombre, concentración o forma farmacéutica
+  
+    this.filteredPrinciples = this.activePrinciples.filter(principle => {
+      // Filtros por estado, ATC y forma farmacéutica
+      const matchesStatus = this.selectedStatus ? principle.abastStatusFK.statusAbastName === this.selectedStatus : true;
+      const matchesAtc = this.selectedAtcCode ? principle.actCode === this.selectedAtcCode : true;
+      const matchesForm = this.selectedPharmaceuticalForm ? principle.pharmaceuticalFormFK.pharmaceuticalFormName === this.selectedPharmaceuticalForm : true;
+  
+      // Filtro de búsqueda adicional
+      const matchesQuery = principle.activePrincipleName.toLowerCase().includes(query) ||
+                           principle.pharmaceuticalFormFK.pharmaceuticalFormName.toLowerCase().includes(query) ||
+                           principle.concentration.toLowerCase().includes(query);
+  
+      // Devuelve el principio si cumple todos los filtros
+      return matchesStatus && matchesAtc && matchesForm && matchesQuery;
+    });
+  }
+
+  clearFilters(): void {
+    this.selectedStatus = '';
+    this.selectedAtcCode = '';
+    this.selectedPharmaceuticalForm = '';
+    this.searchQuery = '';  // Limpiar la consulta de búsqueda
+    this.filterPrinciples();  // Volver a aplicar el filtro, que ahora mostrará todos los elementos sin filtros
+  }
+  
+  // Optional: Handle search query filtering
+  searchFilter(): void {
+    const query = this.searchQuery.toLowerCase();
     this.filteredPrinciples = this.activePrinciples.filter(principle =>
       principle.activePrincipleName.toLowerCase().includes(query) ||
       principle.pharmaceuticalFormFK.pharmaceuticalFormName.toLowerCase().includes(query) ||
