@@ -5,12 +5,12 @@ import { Observable,} from 'rxjs';
 export interface technicalDetail {
   id: number;
   reporter: string;
-  alerttype: string;
-  reportdate: Date;
+  alertType: string;
+  reportDate: string;
   review: string;
-  headlinesnum: Number;
-  rscurrent: Number;
-  rsprocedure: Number;
+  headlinesNum: Number;
+  rsCurrent: Number;
+  rsProcedure: Number;
 }
 
 @Injectable({

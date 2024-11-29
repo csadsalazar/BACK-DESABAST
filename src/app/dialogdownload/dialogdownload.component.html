@@ -1,0 +1,58 @@
+<h2 mat-dialog-title>Descargar reporte</h2>
+<mat-dialog-content class="mat-typography">
+  <p>En el presente apartado se encontrarán los filtros de descarga de Excel.</p>
+
+  <!-- Filtro de Principios Activos -->
+  <div class="filter-group">
+    <p class="filter-description">Seleccione un principio activo para limitar los resultados.</p>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Principios Activos</mat-label>
+      <mat-select>
+        <mat-option>Sin Opción</mat-option> <!-- Opción Sin Opción -->
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Filtro de Principios Activos -->
+  <div class="filter-group">
+    <p class="filter-description">Seleccione un principio activo para limitar los resultados.</p>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Principios Activos</mat-label>
+      <mat-select>
+        <mat-option>Sin Opción</mat-option> <!-- Opción Sin Opción -->
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Filtro ATC en sección expandible -->
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Más filtros
+        </mat-panel-title>
+        <mat-panel-description>
+          Filtros de interés interno
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="filter-group">
+        <mat-label>Filtrar por ATC</mat-label>
+        <p class="filter-description">Seleccione un ATC para refinar su búsqueda.</p>
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>ATC</mat-label>
+          <mat-select>
+            <mat-option>Sin Opción</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-dialog-content>
+
+<!-- Botones de acción -->
+
+<!-- Botones de acción -->
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button mat-dialog-close>Descargar Excel</button>
+</mat-dialog-actions>

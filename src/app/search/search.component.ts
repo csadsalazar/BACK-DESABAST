@@ -13,6 +13,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogdownloadComponent } from '../dialogdownload/dialogdownload.component';  // Asegúrate de importar el nuevo componente
+
 
 @Component({
   selector: 'app-search',
@@ -50,7 +53,11 @@ export class SearchComponent implements OnInit {
   pharmaceuticalFormOptions: string[] = []; // Array for pharmaceutical form options
   atcCodeOptions: string[] = []; // Array for ATC code options
   
-  constructor(private activePrincipleService: ActivePrincipleService, private paginatorIntl: MatPaginatorIntl) {
+  constructor(
+    private activePrincipleService: ActivePrincipleService, 
+    private paginatorIntl: MatPaginatorIntl,     
+    private dialog: MatDialog  
+  ) {
         // Personaliza los textos directamente aquí
         this.paginatorIntl.itemsPerPageLabel = 'Items por página'; // Cambiar "items per page"
         this.paginatorIntl.nextPageLabel = 'Siguiente página';     // Cambiar "next page"
@@ -64,7 +71,9 @@ export class SearchComponent implements OnInit {
       }
   
   ngOnInit(): void {
-    window.scrollTo(0, 0);
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
+    }
     this.loadActivePrinciples();
   }
 
@@ -126,6 +135,13 @@ export class SearchComponent implements OnInit {
       principle.concentration.toLowerCase().includes(query)
     );
   }
+
+    // Método para abrir el diálogo de descarga
+    openDownloadDialog(): void {
+      this.dialog.open(DialogdownloadComponent, {
+        width: '400px',  // Puedes ajustar el tamaño del diálogo aquí
+      });
+    }
 
   // Método para obtener la clase de la tarjeta
   getCardClass(status: string): string {

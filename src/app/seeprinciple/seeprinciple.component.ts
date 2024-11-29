@@ -14,7 +14,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-
 @Component({
   selector: 'app-seeprinciple',
   standalone: true,
@@ -73,9 +72,11 @@ export class SeeprincipleComponent implements OnInit {
 
   createTabs(): void {
     if (this.principle?.productList) {
-      this.notas = this.principle.productList.map(product => ({
-        label: product.holderFK.contactName,
-        content: this.sanitizer.bypassSecurityTrustHtml(`
+      this.notas = this.principle.productList.map(product => {
+        return {
+          label: product.holderFK.contactName,
+          content: this.sanitizer.bypassSecurityTrustHtml(`
+
           <section class="p-2 p-md-2 p-xl-3">
           <div class="container">
             <h1> <strong>Resumen general</strong></h1>
@@ -123,7 +124,7 @@ export class SeeprincipleComponent implements OnInit {
             <div class="row">
               <div class="col-md-4">
                 <mat-card-title><strong>Fecha Reporte</strong></mat-card-title>
-                <p class="text-left">${product.activePrincipleFK.technicalDetailFK.reportdate}</p>
+                <p class="text-left">${product.activePrincipleFK.technicalDetailFK.reportDate}</p>
               </div>
               <div class="col-md-4">
                 <mat-card-title><strong>Estado registro sanitario</strong></mat-card-title>
@@ -255,17 +256,17 @@ export class SeeprincipleComponent implements OnInit {
             </div>
           </section>
 
-        <section class="p-2 p-md-2 p-xl-3">
-          <div class="container">
-            <h3><strong>Resumen</strong></h3>
-            <hr>
-            <mat-card-title><strong>Observaciones Invima</strong></mat-card-title>
-            <p class="text-left">${product.activePrincipleFK.summary}</p>
-          </div>
-        </section>
-
-        `)
-      }));
+          <section class="p-2 p-md-2 p-xl-3">
+            <div class="container">
+              <h3><strong>Resumen</strong></h3>
+              <hr>
+              <mat-card-title><strong>Observaciones Invima</strong></mat-card-title>
+              <p class="text-left">${product.activePrincipleFK.summary}</p>
+            </div>
+          </section>
+          `)
+        };
+      });
     }
   }
 }

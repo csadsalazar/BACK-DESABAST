@@ -1,0 +1,8 @@
+.full-width {
+    width: 100%; /* Hace que el campo ocupe el 100% del ancho */
+}
+.filter-description {
+    font-size: 0.9em; /* Tamaño de fuente más pequeño para la descripción */
+    color: #666; /* Color de texto más suave */
+    margin: 5px 0; /* Espacio vertical */
+}
