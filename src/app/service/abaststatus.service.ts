@@ -21,6 +21,10 @@ export class AbastStatusService {
   get(id: number): Observable<abastStatus> {
     return this.http.get<abastStatus>(`${this.apiUrl}/find/${id}`);
   }
+  
+  getNames(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/names`);
+  }
 
   save(abaststatus: abastStatus): Observable<abastStatus> {
     return this.http.post<abastStatus>(`${this.apiUrl}/save`, abaststatus);

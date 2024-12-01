@@ -45,9 +45,10 @@ export class SearchComponent implements OnInit {
   isLoading: boolean = false;
   errorMessage: string = '';
   searchQuery: string = '';
-  selectedStatus: string = '';
-  selectedAtcCode: string = '';
-  selectedPharmaceuticalForm: string = '';
+  selectedStatuses: string[] = [];
+  selectedAtcCodes: string[] = [];
+  selectedPharmaceuticalForms: string[] = [];
+  
   panelOpenState = false;
   abastecimientoOptions: string[] = []; // Array for abastecimiento options
   pharmaceuticalFormOptions: string[] = []; // Array for pharmaceutical form options
@@ -103,28 +104,26 @@ export class SearchComponent implements OnInit {
     const query = this.searchQuery.toLowerCase();
   
     this.filteredPrinciples = this.activePrinciples.filter(principle => {
-      // Filtros por estado, ATC y forma farmacéutica
-      const matchesStatus = this.selectedStatus ? principle.abastStatusFK.statusAbastName === this.selectedStatus : true;
-      const matchesAtc = this.selectedAtcCode ? principle.actCode === this.selectedAtcCode : true;
-      const matchesForm = this.selectedPharmaceuticalForm ? principle.pharmaceuticalFormFK.pharmaceuticalFormName === this.selectedPharmaceuticalForm : true;
-  
-      // Filtro de búsqueda adicional
+      const matchesStatus = this.selectedStatuses.length === 0 || this.selectedStatuses.includes(principle.abastStatusFK.statusAbastName);
+      const matchesAtc = this.selectedAtcCodes.length === 0 || this.selectedAtcCodes.includes(principle.actCode);
+      const matchesForm = this.selectedPharmaceuticalForms.length === 0 || this.selectedPharmaceuticalForms.includes(principle.pharmaceuticalFormFK.pharmaceuticalFormName);
       const matchesQuery = principle.activePrincipleName.toLowerCase().includes(query) ||
                            principle.pharmaceuticalFormFK.pharmaceuticalFormName.toLowerCase().includes(query) ||
                            principle.concentration.toLowerCase().includes(query);
   
-      // Devuelve el principio si cumple todos los filtros
       return matchesStatus && matchesAtc && matchesForm && matchesQuery;
     });
   }
+  
 
   clearFilters(): void {
-    this.selectedStatus = '';
-    this.selectedAtcCode = '';
-    this.selectedPharmaceuticalForm = '';
-    this.searchQuery = '';  // Limpiar la consulta de búsqueda
-    this.filterPrinciples();  // Volver a aplicar el filtro, que ahora mostrará todos los elementos sin filtros
+    this.selectedStatuses = [];
+    this.selectedAtcCodes = [];
+    this.selectedPharmaceuticalForms = [];
+    this.searchQuery = '';
+    this.filterPrinciples();
   }
+  
   
   // Optional: Handle search query filtering
   searchFilter(): void {

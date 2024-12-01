@@ -19,12 +19,13 @@ export interface product {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/product';
 
+  // Métodos existentes
   list(): Observable<product[]> {
     return this.http.get<product[]>(`${this.apiUrl}/find`);
   }
@@ -44,4 +45,16 @@ export class ProductService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
   }
+
+  downloadExcel(atcCodes: string[] = [], abastStatuses: string[] = [], activePrincipleNames: string[] = []): Observable<Blob> {
+    const params: any = {};
+    if (atcCodes.length > 0) params.atcCodes = atcCodes;
+    if (abastStatuses.length > 0) params.abastStatuses = abastStatuses;
+    if (activePrincipleNames.length > 0) params.activePrincipleNames = activePrincipleNames;
+  
+    return this.http.get(`${this.apiUrl}/excel-download`, {
+      responseType: 'blob',
+      params,
+    });
+  }  
 }

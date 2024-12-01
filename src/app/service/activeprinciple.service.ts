@@ -41,6 +41,14 @@ export class ActivePrincipleService {
     return this.http.get<activePrinciple>(`${this.apiUrl}/find/${id}`);
   }
 
+  getNames(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/names`);
+  }
+
+  getAtcCodes(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/atc-codes`);
+  }
+
   save(principle: activePrinciple): Observable<activePrinciple> {
     return this.http.post<activePrinciple>(`${this.apiUrl}/save`, principle);
   }
