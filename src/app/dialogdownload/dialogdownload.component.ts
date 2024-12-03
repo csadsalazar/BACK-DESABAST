@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { ActivePrincipleService } from '../service/activeprinciple.service';
 import { CommonModule } from '@angular/common'; // Importa CommonModule
 
-
 @Component({
   selector: 'app-dialogdownload',
   standalone: true,

@@ -23,7 +23,7 @@ export class AbastStatusService {
   }
   
   getNames(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/names`);
+    return this.http.get<string[]>(`${this.apiUrl}/status`);
   }
 
   save(abaststatus: abastStatus): Observable<abastStatus> {

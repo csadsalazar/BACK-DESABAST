@@ -27,8 +27,7 @@ export class WelcomeComponent {
     { label: 'En monitorización', color: '#ff9800', imageUrl: 'assets/images/backgrounds/En Monitorización.png', text: 'Seguimiento permanente, debido a que las cantidades disponibles reportadas por los titulares del registro sanitario de un medicamento en seguimiento son limitadas para los siguientes tres meses de comercialización.' },
     { label: 'No hay desabastecimiento', color: '#42ab49', imageUrl: 'assets/images/backgrounds/No hay desabastecimiento.png', text: 'Cuando las cantidades reportadas por los titulares de los registros sanitarios son suficientes para satisfacer la demanda del medicamento a nivel nacional.' },
     { label: 'Riesgo de desabastecimiento', color: '#c19982', imageUrl: 'assets/images/backgrounds/En riesgo.png', text: 'Cuando exista alguna contingencia o situación que pueda llevar en el corto o mediano plazo a que la oferta de un medicamento en seguimiento sea insuficiente para satisfacer las necesidades del país.' },
-    { label: 'Temporalmente no comercializado', color: '#00cbcc', imageUrl: 'assets/images/backgrounds/no comercializado.png', text: 'Situaciones o incidentes que impiden la comercialización o que conllevan a una interrupción temporal o retiro definitivo del mercado local.' },
-    { label: 'Sin estado de abastecimiento', color: 'gray', imageUrl: 'assets/images/backgrounds/base.png', text: 'Principios activos los cuales no cuentan aun con un estado de abastecimiento.'}
+    { label: 'Temporalmente no comercializado', color: '#00cbcc', imageUrl: 'assets/images/backgrounds/no comercializado.png', text: 'Situaciones o incidentes que impiden la comercialización o que conllevan a una interrupción temporal o retiro definitivo del mercado local.' }
   ];
 
   onButtonClick(button: any) {
