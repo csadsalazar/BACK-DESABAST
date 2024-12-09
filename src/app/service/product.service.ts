@@ -1,18 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable,} from 'rxjs';
-import { productChannelDetail } from './productchanneldetail.service';
 import { activePrinciple } from './activeprinciple.service';
 import { therapeuticGroup } from './therapeuticgroup.service';
 import { holder } from './holder.service';
 
 export interface product {
   id: number;
-  record: string;
+  record: number;
   productName: string;
-  registerStatus: string;
-  institutionalChannelFK: productChannelDetail;
-  comertialChannelFK: productChannelDetail;
   activePrincipleFK: activePrinciple;
   terapeuticGroupFK: therapeuticGroup;
   holderFK: holder;
@@ -44,17 +40,5 @@ export class ProductService {
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
-  }
-
-  downloadExcel(atcCodes: string[] = [], abastStatuses: string[] = [], activePrincipleNames: string[] = []): Observable<Blob> {
-    const params: any = {};
-    if (atcCodes.length > 0) params.atcCodes = atcCodes;
-    if (abastStatuses.length > 0) params.abastStatuses = abastStatuses;
-    if (activePrincipleNames.length > 0) params.activePrincipleNames = activePrincipleNames;
-  
-    return this.http.get(`${this.apiUrl}/excel-download`, {
-      responseType: 'blob',
-      params,
-    });
-  }  
+  } 
 }

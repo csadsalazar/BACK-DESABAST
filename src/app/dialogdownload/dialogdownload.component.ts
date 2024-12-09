@@ -42,38 +42,8 @@ export class DialogdownloadComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activePrincipleService.getNames().subscribe((data) => {
-      this.names = data;
-    });
-    this.activePrincipleService.getAtcCodes().subscribe((data) => {
-      this.atcCodes = data;
-    });
-    this.abastStatusService.getNames().subscribe((data) => {
-      this.statuses = data;
-    });
   }
 
-  downloadReport(): void {
-    this.productService
-      .downloadExcel(this.selectedAtcCodes, this.selectedAbastStatuses, this.selectedNames)
-      .subscribe(
-        (response) => {
-          const blob = new Blob([response], {
-            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-          });
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'report.xlsx';
-          a.click();
-          window.URL.revokeObjectURL(url);
-        },
-        (error) => {
-          console.error('Error al descargar el reporte:', error);
-          alert('No hay datos para descargar con los filtros seleccionados.');
-        }
-      );
-  }
   
   clearFilters(): void {
     this.selectedNames = [];

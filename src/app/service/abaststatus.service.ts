@@ -21,20 +21,4 @@ export class AbastStatusService {
   get(id: number): Observable<abastStatus> {
     return this.http.get<abastStatus>(`${this.apiUrl}/find/${id}`);
   }
-  
-  getNames(): Observable<string[]> {
-    return this.http.get<string[]>(`${this.apiUrl}/status`);
-  }
-
-  save(abaststatus: abastStatus): Observable<abastStatus> {
-    return this.http.post<abastStatus>(`${this.apiUrl}/save`, abaststatus);
-  }
-
-  update(id: number, abaststatus: abastStatus): Observable<abastStatus> {
-    return this.http.put<abastStatus>(`${this.apiUrl}/update/${id}`, abaststatus);
-  }
-
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
-  }
 }

@@ -105,15 +105,17 @@
               <div class="flip-card-front" [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
                 <mat-card-content class="flip-card-content">   
                   <div>
+                    <!-- Check if principle.abastStatusFK is defined -->
                     <div *ngIf="principle.abastStatusFK.statusAbastName">
                       <img [src]="getImageClass(principle.abastStatusFK.statusAbastName)" alt="Status Image" class="mt-5"/>
                     </div>                    
                     <div class="card-img-overlay mt-3">
-                      <mat-card-title>{{ principle.activePrincipleName }} {{ principle.concentration }} {{principle.pharmaceuticalFormFK.pharmaceuticalFormName}}</mat-card-title>
+                      <mat-card-title>{{ principle.activePrincipleFK.activePrincipleName }} {{ principle.activePrincipleFK.concentration }} {{principle.activePrincipleFK.pharmaceuticalFormFK.pharmaceuticalFormName}}</mat-card-title>
                     </div>
                   </div>
                 </mat-card-content>
               </div>
+              
 
               <!-- Parte trasera de la tarjeta -->
               <div class="flip-card-back list-group">
@@ -122,7 +124,7 @@
                     <div class="d-flex w-100 justify-content-between">
                       <h3 class="mb-1 fw-bold">Descripción ATC</h3>
                     </div>
-                    <p class="mb-1">{{ principle.actDescription || 'Sin expediente' }}</p>
+                    <p class="mb-1">{{ principle.activePrincipleFK.actDescription || 'Sin expediente' }}</p>
                   </a>
 
                   <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
@@ -136,7 +138,7 @@
                     <div class="d-flex w-100 justify-content-between">
                       <h3 class="mb-1 fw-bold">Codigo ATC</h3>
                     </div>
-                    <p class="mb-1">{{ principle.actCode || 'Sin código' }}</p>
+                    <p class="mb-1">{{ principle.activePrincipleFK.actCode || 'Sin código' }}</p>
                   </a>
                   
                   <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">

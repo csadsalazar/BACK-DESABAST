@@ -2,53 +2,49 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable,} from 'rxjs';
 import { channelType } from './channeltype.service';
+import { activePrincipleDetail } from './activeprincipledetail.service';
+import { product } from './product.service';
+import { productDetail } from './productdetail.service';
 
 export interface productChannelDetail {
   id: number;
-  maxCapacity: Number;
+  maxCapacity: number;
   registerDate: Date;
   oneMonth: string;
-  commercialValueOne: Number;
+  commercialValueOne: number;
   twoMonth: string;
-  commercialValueTwo: Number;
+  commercialValueTwo: number;
   threeMonth: string;
-  commercialValueThree: Number;
+  commercialValueThree: number;
   fourMonth: string;
-  commercialValueFour: Number;
+  commercialValueFour: number;
   observationsNoCommercial: string;
   reasonsNoCommercial: string;
-  oneYear: string;
-  saleOne: Number;
-  twoYear: string;
-  saleTwo: Number;
+  oneYear: number;
+  saleOne: number;
+  twoYear: number;
+  saleTwo: number;
   currentStatus: string;
+  currentStatusRS: string;
+  productFK: product;
   channelTypeFK: channelType;
+  productDetailOneList: productDetail[];
+  productDetailTwoList: productDetail[];
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductChannelDetailService {
+
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/product-channel-detail';
 
-  list(): Observable<productChannelDetail[]> {
-    return this.http.get<productChannelDetail[]>(`${this.apiUrl}/find`);
+  list(): Observable<activePrincipleDetail[]> {
+    return this.http.get<activePrincipleDetail[]>(`${this.apiUrl}/find`);
   }
 
-  get(id: number): Observable<productChannelDetail> {
-    return this.http.get<productChannelDetail>(`${this.apiUrl}/find/${id}`);
-  }
-
-  save(productchanneldetail: productChannelDetail): Observable<productChannelDetail> {
-    return this.http.post<productChannelDetail>(`${this.apiUrl}/save`, productchanneldetail);
-  }
-
-  update(id: number, productchanneldetail: productChannelDetail): Observable<productChannelDetail> {
-    return this.http.put<productChannelDetail>(`${this.apiUrl}/update/${id}`, productchanneldetail);
-  }
-
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
+  get(id: number): Observable<activePrincipleDetail> {
+    return this.http.get<activePrincipleDetail>(`${this.apiUrl}/find/${id}`);
   }
 }
