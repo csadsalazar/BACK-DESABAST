@@ -9,9 +9,9 @@ export interface product {
   id: number;
   record: number;
   productName: string;
-  activePrincipleFK: activePrinciple;
-  terapeuticGroupFK: therapeuticGroup;
+  therapeuticGroupFK: therapeuticGroup;
   holderFK: holder;
+  activePrincipleFK: activePrinciple;  
 }
 
 @Injectable({
@@ -29,16 +29,4 @@ export class ProductService {
   get(id: number): Observable<product> {
     return this.http.get<product>(`${this.apiUrl}/find/${id}`);
   }
-
-  save(product: product): Observable<product> {
-    return this.http.post<product>(`${this.apiUrl}/save`, product);
-  }
-
-  update(id: number, product: product): Observable<product> {
-    return this.http.put<product>(`${this.apiUrl}/update/${id}`, product);
-  }
-
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
-  } 
 }

@@ -14,7 +14,7 @@ import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginato
 import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogdownloadComponent } from '../dialogdownload/dialogdownload.component';  // Asegúrate de importar el nuevo componente
+import { DialogdownloadComponent } from '../dialogdownload/dialogdownload.component';
 
 
 @Component({
@@ -49,10 +49,9 @@ export class SearchComponent implements OnInit {
   selectedStatuses: string[] = [];
   selectedAtcCodes: string[] = [];
   selectedPharmaceuticalForms: string[] = [];
-
-  abastecimientoOptions: string[] = ['Desabastecido', 'Descontinuado', 'En Riesgo de desabastecimiento', 'En Riesgo de desabastecimiento',]; // Opciones predefinidas
-  pharmaceuticalFormOptions: string[] = ['Tableta', 'Líquido', 'Inyectable']; // Opciones predefinidas
-  atcCodeOptions: string[] = ['A01', 'B02', 'C03']; // Opciones predefinidas
+  abastecimientoOptions: string[] = ['Desabastecido', 'En monitorización', 'Descontinuado', 'No hay desabastecimiento', 'Riesgo de desabastecimiento', 'Temporalmente no comercializado']; // Opciones predefinidas
+  pharmaceuticalFormOptions: string[] = []; 
+  atcCodeOptions: string[] = []; 
 
   constructor(
     private activePrincipleService: ActivePrincipleDetailService,

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable,} from 'rxjs';
 import { pharmaceuticalForm } from './pharmaceuticalform.service';
+import { activePrincipleDetail } from './activeprincipledetail.service';
 
 export interface activePrinciple {
   id: number;
@@ -10,6 +11,7 @@ export interface activePrinciple {
   actDescription: string;
   concentration: string;
   pharmaceuticalFormFK: pharmaceuticalForm;
+  activePrincipleDetailList: activePrincipleDetail[];
 }
 
 @Injectable({
