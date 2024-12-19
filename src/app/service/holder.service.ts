@@ -23,16 +23,4 @@ export class HolderService {
   get(id: number): Observable<holder> {
     return this.http.get<holder>(`${this.apiUrl}/find/${id}`);
   }
-
-  save(holder: holder): Observable<holder> {
-    return this.http.post<holder>(`${this.apiUrl}/save`, holder);
-  }
-
-  update(id: number, holder: holder): Observable<holder> {
-    return this.http.put<holder>(`${this.apiUrl}/update/${id}`, holder);
-  }
-
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
-  }
 }

@@ -21,16 +21,4 @@ export class PharmaceuticalFormService {
   get(id: number): Observable<pharmaceuticalForm> {
     return this.http.get<pharmaceuticalForm>(`${this.apiUrl}/find/${id}`);
   }
-
-  save(pharmaceuticalform: pharmaceuticalForm): Observable<pharmaceuticalForm> {
-    return this.http.post<pharmaceuticalForm>(`${this.apiUrl}/save`, pharmaceuticalform);
-  }
-
-  update(id: number, pharmaceuticalform: pharmaceuticalForm): Observable<pharmaceuticalForm> {
-    return this.http.put<pharmaceuticalForm>(`${this.apiUrl}/update/${id}`, pharmaceuticalform);
-  }
-
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
-  }
 }

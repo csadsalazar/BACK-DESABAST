@@ -21,16 +21,4 @@ export class ChannelTypeService {
   get(id: number): Observable<channelType> {
     return this.http.get<channelType>(`${this.apiUrl}/find/${id}`);
   }
-
-  save(channeltype: channelType): Observable<channelType> {
-    return this.http.post<channelType>(`${this.apiUrl}/save`, channeltype);
-  }
-
-  update(id: number, channeltype: channelType): Observable<channelType> {
-    return this.http.put<channelType>(`${this.apiUrl}/update/${id}`, channeltype);
-  }
-
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
-  }
 }

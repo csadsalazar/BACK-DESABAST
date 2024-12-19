@@ -21,16 +21,4 @@ export class TherapeuticGroupService {
   get(id: number): Observable<therapeuticGroup> {
     return this.http.get<therapeuticGroup>(`${this.apiUrl}/find/${id}`);
   }
-
-  save(therapeuticgroup: therapeuticGroup): Observable<therapeuticGroup> {
-    return this.http.post<therapeuticGroup>(`${this.apiUrl}/save`, therapeuticgroup);
-  }
-
-  update(id: number, therapeuticgroup: therapeuticGroup): Observable<therapeuticGroup> {
-    return this.http.put<therapeuticGroup>(`${this.apiUrl}/update/${id}`, therapeuticgroup);
-  }
-
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
-  }
 }

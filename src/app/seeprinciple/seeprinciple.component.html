@@ -92,14 +92,15 @@
 
       <mat-card class="mb-4">
         <mat-card-content>
-          <mat-tab-group>
+          <mat-tab-group *ngIf="tabs.length > 0" aria-label="Product Tabs">
             <mat-tab *ngFor="let tab of tabs" [label]="tab.label">
               <div [innerHTML]="tab.content"></div>
             </mat-tab>
           </mat-tab-group>
           
-          <mat-progress-spinner *ngIf="isLoading" mode="indeterminate"></mat-progress-spinner>
-          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+          <mat-spinner *ngIf="isLoading" diameter="50"></mat-spinner>
+          <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+          
           
         </mat-card-content>
       </mat-card>

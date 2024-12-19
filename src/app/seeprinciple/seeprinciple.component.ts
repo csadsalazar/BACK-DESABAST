@@ -1,3 +1,4 @@
+import { cause } from './../service/cause.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ActivePrincipleService, activePrinciple } from '../service/activeprinciple.service';
@@ -95,11 +96,16 @@ export class SeeprincipleComponent implements OnInit {
   }
 
   createTabs(products: any[]): void {
-    console.log(products);
-    // Crear pestañas dinámicas basadas en los productos
-    this.tabs = products.map(product => ({
-      label: product.productName,    
-      content: this.sanitizer.bypassSecurityTrustHtml(`
+    console.log(products); // Verifica que los productos estén bien cargados
+    this.tabs = products.map(product => {
+      // Verifica que los datos necesarios estén presentes
+      const activePrinciple = product.activePrincipleFK;
+      const activePrincipleDetail = activePrinciple ? activePrinciple.activePrincipleDetail : null;
+  
+      return {
+        label: product.productName,
+        content: this.sanitizer.bypassSecurityTrustHtml(`
+
       <section class="p-2 p-md-2 p-xl-3">
           <div class="container">
             <h1> <strong>Resumen general</strong></h1>
@@ -118,7 +124,7 @@ export class SeeprincipleComponent implements OnInit {
               </div>
               <div class="col-md-4">
                 <mat-card-title><strong>Estado abastecimiento</strong></mat-card-title>
-                <p class="text-left">${product.activePrincipleFK.activePrincipleDetailList.abastStatusFK.statusAbastName}</p>
+                <p class="text-left">${product.activePrincipleFK.activePrincipleDetail}</p>
               </div>
               <div class="col-md-4">
                 <mat-card-title><strong>Forma farmaceutica</strong></mat-card-title>
@@ -147,7 +153,7 @@ export class SeeprincipleComponent implements OnInit {
             <div class="row">
               <div class="col-md-4">
                 <mat-card-title><strong>Fecha Reporte</strong></mat-card-title>
-                <p class="text-left">${product.activePrincipleFK.technicalDetailFK.reportDate}</p>
+                <p class="text-left">${product.activePrincipleFK.activePrincipleDetail}</p>
               </div>
               <div class="col-md-4">
                 <mat-card-title><strong>Estado registro sanitario</strong></mat-card-title>
@@ -173,121 +179,9 @@ export class SeeprincipleComponent implements OnInit {
           </div>
         </section>
 
-        <section class="p-2 p-md-2 p-xl-3">
-          <div class="container">
-            <h3><strong>Información canal institucional</strong></h3>
-            <hr>
-            <div class="row">
-              <div class="col-md-4">
-                <mat-card-title><strong>Canal institucional</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.channelTypeFK.channelTypeName}</p>
-              </div>
-              <div class="col-md-4">
-                <mat-card-title><strong>Ventas ${product.institutionalChannelFK.oneYear} (UMD)</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.saleOne}</p>
-              </div>
-              <div class="col-md-4">
-                <mat-card-title><strong>Ventas ${product.institutionalChannelFK.twoYear} (UMD)</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.saleTwo}</p>
-              </div>
-              <div class="col-md-4">
-                <mat-card-title><strong>Capacidad maxima UMD</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.maxCapacity}</p>
-              </div>
-              <div class="col-md-4">
-                <mat-card-title><strong>${product.institutionalChannelFK.oneMonth} (UMD)</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.commercialValueOne}</p>
-              </div>
-              <div class="col-md-4">
-                <mat-card-title><strong>${product.institutionalChannelFK.twoMonth} (UMD)</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.commercialValueTwo}</p>
-              </div>
-              <div class="col-md-4">
-                <mat-card-title><strong>${product.institutionalChannelFK.threeMonth} (UMD)</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.commercialValueThree}</p>
-              </div>
-              <div class="col-md-4">
-                <mat-card-title><strong>${product.institutionalChannelFK.fourMonth} (UMD)</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.commercialValueFour}</p>
-              </div>
-              <div class="col-md-4">
-                <mat-card-title><strong>Estado actual</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.currentStatus}</p>
-              </div>
-              <div class="col-md-4">
-                <mat-card-title><strong>Razones no comercialización</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.reasonsNoCommercial}</p>
-              </div>
-              <div class="col-md-4">
-                <mat-card-title><strong>Observaciones no comercialización</strong></mat-card-title>
-                <p class="text-left">${product.institutionalChannelFK.observationsNoCommercial}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="p-2 p-md-2 p-xl-3">
-            <div class="container">
-              <h3><strong>Información canal comercial</strong></h3>
-              <hr>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-card-title><strong>Canal institucional</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.channelTypeFK.channelTypeName}</p>
-                </div>
-                <div class="col-md-4">
-                  <mat-card-title><strong>Ventas ${product.comertialChannelFK.oneYear} (UMD)</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.saleOne}</p>
-                </div>
-                <div class="col-md-4">
-                  <mat-card-title><strong>Ventas ${product.comertialChannelFK.twoYear} (UMD)</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.saleTwo}</p>
-                </div>
-                <div class="col-md-4">
-                  <mat-card-title><strong>Capacidad maxima UMD</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.maxCapacity}</p>
-                </div>
-                <div class="col-md-4">
-                  <mat-card-title><strong>${product.comertialChannelFK.oneMonth} (UMD)</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.commercialValueOne}</p>
-                </div>
-                <div class="col-md-4">
-                  <mat-card-title><strong>${product.comertialChannelFK.twoMonth} (UMD)</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.commercialValueTwo}</p>
-                </div>
-                <div class="col-md-4">
-                  <mat-card-title><strong>${product.comertialChannelFK.threeMonth} (UMD)</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.commercialValueThree}</p>
-                </div>
-                <div class="col-md-4">
-                  <mat-card-title><strong>${product.comertialChannelFK.fourMonth} (UMD)</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.commercialValueFour}</p>
-                </div>
-                <div class="col-md-4">
-                  <mat-card-title><strong>Estado actual</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.currentStatus}</p>
-                </div>
-                <div class="col-md-4">
-                  <mat-card-title><strong>Razones no comercialización</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.reasonsNoCommercial}</p>
-                </div>
-                <div class="col-md-4">
-                  <mat-card-title><strong>Observaciones no comercialización</strong></mat-card-title>
-                  <p class="text-left">${product.comertialChannelFK.observationsNoCommercial}</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="p-2 p-md-2 p-xl-3">
-            <div class="container">
-              <h3><strong>Resumen</strong></h3>
-              <hr>
-              <mat-card-title><strong>Observaciones Invima</strong></mat-card-title>
-              <p class="text-left">${product.activePrincipleFK.summary}</p>
-            </div>
-          </section>
-      `)
-    }));
+        `)
+      };
+    });
   }
+  
 }
