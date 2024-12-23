@@ -50,6 +50,8 @@ export class SearchComponent implements OnInit {
   selectedAtcCodes: string[] = [];
   selectedPharmaceuticalForms: string[] = [];
   abastecimientoOptions: string[] = ['Desabastecido', 'En monitorización', 'Descontinuado', 'No hay desabastecimiento', 'Riesgo de desabastecimiento', 'Temporalmente no comercializado']; // Opciones predefinidas
+  monthOptions: string[] = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']; // Opciones predefinidas
+  yearOptions: string[] = [];
   pharmaceuticalFormOptions: string[] = []; 
   atcCodeOptions: string[] = []; 
 
@@ -69,12 +71,16 @@ export class SearchComponent implements OnInit {
     };
   }
 
+
+
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       window.scrollTo(0, 0);
     }
     this.loadActivePrinciples();
   }
+
+  
 
   loadActivePrinciples(): void {
     this.isLoading = true;

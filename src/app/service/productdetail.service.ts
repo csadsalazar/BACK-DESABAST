@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable,} from 'rxjs';
 import { productChannelDetail } from './productchanneldetail.service';
+import { activePrincipleDetail } from './activeprincipledetail.service';
+import { product } from './product.service';
 
 export interface productDetail {
   id: number;
@@ -13,6 +15,8 @@ export interface productDetail {
   autoContDate: Date;
   institutionalChannelFK: productChannelDetail[];
   comertialChannelFK: productChannelDetail[];
+  activePrincipleDetailFK: activePrincipleDetail[];
+  producFK: product[];
 }
 
 @Injectable({
@@ -20,7 +24,7 @@ export interface productDetail {
 })
 export class ProductDetailService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/product-detail';
+  private apiUrl = 'http://localhost:8080/api/detail';
 
   list(): Observable<productDetail[]> {
     return this.http.get<productDetail[]>(`${this.apiUrl}/find`);

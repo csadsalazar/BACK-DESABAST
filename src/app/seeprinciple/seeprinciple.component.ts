@@ -161,7 +161,7 @@ export class SeeprincipleComponent implements OnInit {
               </div>
               <div class="col-md-4">
                 <mat-card-title><strong>Causas</strong></mat-card-title>
-                <p class="text-left">${product.activePrincipleFK.causeFK.causeName}</p>
+                <p class="text-left">${product.activePrincipleFK.causeFK}</p>
               </div>
               <div class="col-md-4">
                 <mat-card-title><strong>Fecha inicio seguimiento</strong></mat-card-title>

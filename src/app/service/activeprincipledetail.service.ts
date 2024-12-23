@@ -17,6 +17,7 @@ export interface activePrincipleDetail {
   initialFollowUp: Date;
   finalFollowUp: Date;
   finishDate: Date;
+  insertDate: Date;
   summary: string;
   activePrincipleFK: activePrinciple;
   abastStatusFK: abastStatus;
