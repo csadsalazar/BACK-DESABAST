@@ -37,7 +37,6 @@ import { ProductService } from '../service/product.service';
 })
 export class SeeprincipleComponent implements OnInit {
   principle: activePrinciple | null = null;
-  
   isLoading: boolean = true;
   errorMessage: string = '';
   tabs: { label: string, content: SafeHtml }[] = []; // Cambiar el nombre a tabs
@@ -97,11 +96,7 @@ export class SeeprincipleComponent implements OnInit {
 
   createTabs(products: any[]): void {
     console.log(products); // Verifica que los productos estén bien cargados
-    this.tabs = products.map(product => {
-      // Verifica que los datos necesarios estén presentes
-      const activePrinciple = product.activePrincipleFK;
-      const activePrincipleDetail = activePrinciple ? activePrinciple.activePrincipleDetail : null;
-  
+    this.tabs = products.map(product => {  
       return {
         label: product.productName,
         content: this.sanitizer.bypassSecurityTrustHtml(`

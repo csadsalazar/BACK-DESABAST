@@ -159,7 +159,7 @@
                   <div class="d-flex w-100 justify-content-between">
                     <h3 class="mb-1 fw-bold">Descripción ATC</h3>
                   </div>
-                  <p class="mb-1">{{ principle.activePrincipleFK.actDescription || 'Sin expediente' }}</p>
+                  <p class="mb-1">{{ principle.activePrincipleFK.atcDescription || 'Sin expediente' }}</p>
                 </a>
 
                 <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
@@ -173,7 +173,7 @@
                   <div class="d-flex w-100 justify-content-between">
                     <h3 class="mb-1 fw-bold">Codigo ATC</h3>
                   </div>
-                  <p class="mb-1">{{ principle.activePrincipleFK.actCode || 'Sin código' }}</p>
+                  <p class="mb-1">{{ principle.activePrincipleFK.atcCode || 'Sin código' }}</p>
                 </a>
 
                 <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">

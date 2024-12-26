@@ -7,8 +7,8 @@ import { activePrincipleDetail } from './activeprincipledetail.service';
 export interface activePrinciple {
   id: number;
   activePrincipleName: string;
-  actCode: string;
-  actDescription: string;
+  atcCode: string;
+  atcDescription: string;
   concentration: string;
   pharmaceuticalFormFK: pharmaceuticalForm;
   activePrincipleDetailList: activePrincipleDetail[];

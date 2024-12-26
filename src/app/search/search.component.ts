@@ -71,16 +71,12 @@ export class SearchComponent implements OnInit {
     };
   }
 
-
-
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       window.scrollTo(0, 0);
     }
     this.loadActivePrinciples();
   }
-
-  
 
   loadActivePrinciples(): void {
     this.isLoading = true;
@@ -104,7 +100,7 @@ export class SearchComponent implements OnInit {
 
     this.filteredPrinciples = this.activePrinciples.filter((principle) => {
       const matchesStatus = this.selectedStatuses.length === 0 || this.selectedStatuses.includes(principle.abastStatusFK.statusAbastName);
-      const matchesAtc = this.selectedAtcCodes.length === 0 || this.selectedAtcCodes.includes(principle.activePrincipleFK.actCode);
+      const matchesAtc = this.selectedAtcCodes.length === 0 || this.selectedAtcCodes.includes(principle.activePrincipleFK.atcCode);
       const matchesForm = this.selectedPharmaceuticalForms.length === 0 || this.selectedPharmaceuticalForms.includes(principle.activePrincipleFK.pharmaceuticalFormFK.pharmaceuticalFormName);
       const matchesQuery = principle.activePrincipleFK.activePrincipleName.toLowerCase().includes(query) ||
         principle.activePrincipleFK.concentration.toLowerCase().includes(query);

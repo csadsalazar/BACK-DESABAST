@@ -8,7 +8,7 @@
         </ol>
       </nav>
       <div>     
-        <mat-card>
+        <mat-card class="mb-4">
           <mat-card-content>
             <mat-card-header>
               <h1 class="ml-2 text-dark"><strong>RESULTADOS</strong></h1>
@@ -16,79 +16,51 @@
             <div class="container">
               <div class="row align-items-start">
                 <div>
-                  <section>
-                    
+                  <section class="p-2 p-md-2 p-xl-3">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <h4><strong>Principio activo</strong></h4>
+                        <p class="text-left">{{ principle.activePrincipleName }}</p>
+                      </div>
+                      <div class="col-md-4">
+                        <h4><strong>Descripción ATC</strong></h4>
+                        <p class="text-left">{{ principle.atcDescription }}</p>
+                      </div>
+                      <div class="col-md-4">
+                        <h4><strong>Estado abastecimiento</strong></h4>
+                        <p class="text-left"></p>
+                      </div>
+                      <div class="col-md-4">
+                        <h4><strong>Codigo ATC</strong></h4>
+                        <p class="text-left">{{ principle.atcCode }}</p>
+                      </div>
+                      <div class="col-md-4">
+                        <h4><strong>Fecha de seguimiento inicial</strong></h4>
+                        <p class="text-left"></p>
+                      </div>
+                      <div class="col-md-4">
+                        <h4><strong>Fecha de seguimiento final</strong></h4>
+                        <p class="text-left"></p>
+                      </div>
+                      <div class="col-md-4">
+                        <h4><strong>Concentratión</strong></h4>
+                        <p class="text-left">{{ principle.concentration }}</p>
+                      </div>
+                      <div class="col-md-4">
+                        <h4><strong>Forma farmaceutica</strong></h4>
+                        <p class="text-left">{{ principle.pharmaceuticalFormFK.pharmaceuticalFormName }}</p>
+                      </div>
+                      <div class="col-md-4">
+                        <h4><strong>Resumen</strong></h4>
+                        <p class="text-left">{{ product.sumary }}</p>
+                      </div>
+                    </div>
                   </section>
                 </div>
               </div>
             </div>
           </mat-card-content>
         </mat-card>
-
-        <div class="container">
-          <div class="row align-items-start">
-            <div class="col">
-              <p><strong>Principio activo:</strong>{{ principle.activePrincipleName }} ({{ principle.actCode }})</p>
-          <section class="p-2 p-md-2 p-xl-3">
-            <div class="container">
-              <h1><strong>Resumen general</strong></h1>
-            </div>
-            <div class="col">
-              <p><strong>Descripción ATC:</strong> {{ principle.actDescription || 'No disponible' }}</p>          
-            <hr>
-            <div class="row">
-              <div class="col-md-4">
-                <h4><strong>Principio activo:</strong></h4>
-                <p class="text-left">{{ principle.activePrincipleName }} ({{ principle.actCode }})</p>
-              </div>
-              <div class="col-md-4">
-                <h4><strong>Descripción ATC:</strong></h4>
-                <p class="text-left">{{ principle.actDescription || 'No disponible' }}</p>
-              </div>
-              <div class="col-md-4">
-                <h4><strong>Fecha de seguimiento inicial:</strong></h4>
-                <p class="text-left"></p>
-              </div>
-              <div class="col-md-4">
-                <h4><strong>Estado de Abastecimiento:</strong></h4>
-                <p class="text-left"></p>
-              </div>
-              <div class="col-md-4">
-                <h4><strong>Código ATC:</strong></h4>
-                <p class="text-left">{{ principle.actCode }}</p>
-              </div>
-              <div class="col-md-4">
-                <h4><strong>Fecha ultimo seguimiento:</strong></h4>
-                <p class="text-left"></p>
-              </div>
-              <div class="col-md-4">
-                <h4><strong>Resumen:</strong></h4>
-                <p class="text-left"></p>
-              </div>
-            </div>
-            <div class="col">
-              <p><strong>Fecha de seguimiento inicial:</strong> </p>
-            </div>
-          </div>
-          <div class="row align-items-center">
-            <div class="col">
-              <p><strong>Estado de Abastecimiento:</strong></p>
-            </div>
-            <div class="col">
-              <p><strong>Código ATC:</strong> {{ principle.actCode }}</p>
-            </div>
-            <div class="col">
-              <p><strong>Fecha de seguimiento final:</strong></p>        
-            </div>
-          </div>
-          <div class="row align-items-end">
-            <div class="col">
-              <p><strong>Resumen:</strong> </p>
-            </div>
-          </div>
-          </section>
-        </div>
-  
 
       <mat-card class="mb-4">
         <mat-card-content>
