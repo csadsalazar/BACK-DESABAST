@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable,} from 'rxjs';
+import { Observable} from 'rxjs';
 
 export interface therapeuticGroup {
   id: number;
@@ -10,6 +10,7 @@ export interface therapeuticGroup {
 @Injectable({
   providedIn: 'root'
 })
+
 export class TherapeuticGroupService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/therapeutic-group';

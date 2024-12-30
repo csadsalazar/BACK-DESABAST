@@ -4,7 +4,6 @@ import { Observable,} from 'rxjs';
 import { channelType } from './channeltype.service';
 import { activePrincipleDetail } from './activeprincipledetail.service';
 import { product } from './product.service';
-import { productDetail } from './productdetail.service';
 
 export interface productChannelDetail {
   id: number;
@@ -25,11 +24,8 @@ export interface productChannelDetail {
   twoYear: number;
   saleTwo: number;
   currentStatus: string;
-  currentStatusRS: string;
   productFK: product;
   channelTypeFK: channelType;
-  productDetailOneList: productDetail[];
-  productDetailTwoList: productDetail[];
 }
 
 @Injectable({

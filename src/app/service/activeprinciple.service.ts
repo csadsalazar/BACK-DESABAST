@@ -29,4 +29,12 @@ export class ActivePrincipleService {
   get(id: number): Observable<activePrinciple> {
     return this.http.get<activePrinciple>(`${this.apiUrl}/find/${id}`);
   }
+  
+  getDistinctPrinciples(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/principles`);
+  }
+
+  getDistinctCodes(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/codes`);
+  }
 }
