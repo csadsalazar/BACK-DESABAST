@@ -8,7 +8,7 @@
       </svg>
       <div>
         Los principios activos que se mostrarán a continuación corresponde solo para los estados de abastecimiento:
-        Desabastecido y Riesgo de desabastecimiento con corte de Enero de 2025. Respecto a los otros estados de
+        Desabastecido y Riesgo de desabastecimiento con corte de AAAA/MM/DD. Respecto a los otros estados de
         abastecimiento (No desabastecido, Monitorización, no comercializado y descontinuado) puede consultar el archivo
         PDF publicado en el micrositio de desabastecimiento de la página web de Invima según el respectivo corte de
         publicación. </div>
@@ -24,9 +24,8 @@
     <!-- Card con el título -->
     <mat-card class="mc-1">
       <mat-card-header>
-        <h1 class="ml-2 text-dark"><strong>{{ currentPageResultsCount }} resultado(s) encontrados.</strong></h1>
+        <h1 class="ml-2 text-dark"><strong>RESULTADOS</strong></h1>
       </mat-card-header>
-      
 
       <mat-card-content class="container-fluid">
         <div class="row g-4">
@@ -34,34 +33,33 @@
           <div class="col-12 col-md-3">
             <mat-form-field appearance="fill" class="w-100">
               <mat-label>Buscar...</mat-label>
-              <input matInput placeholder="Buscar" class="w-100" [(ngModel)]="searchQuery" (input)="filterActivePrinciplesDetail()">
+              <input matInput placeholder="Buscar" class="w-100" [(ngModel)]="searchQuery" (input)="filterPrinciples()">
             </mat-form-field>
           </div>
 
-        <!-- Filtro de Meses -->
-        <div class="col-12 col-md-3">
-          <mat-form-field appearance="fill" class="w-100">
-            <mat-label>Meses</mat-label>
-            <mat-select class="w-100" [(ngModel)]="selectedMonths" multiple (selectionChange)="filterActivePrinciplesDetail()">
-              <mat-option *ngFor="let month of monthOptions" [value]="month">
-                {{ month }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
+          <!-- Filtro de Estado Abastecimiento -->
+          <div class="col-12 col-md-3">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Meses</mat-label>
+              <mat-select class="w-100" [(ngModel)]="selectedStatuses" multiple (selectionChange)="filterPrinciples()">
+                <mat-option *ngFor="let month of monthOptions" [value]="month">
+                  {{ month }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-        <!-- Filtro de Años -->
-        <div class="col-12 col-md-3">
-          <mat-form-field appearance="fill" class="w-100">
-            <mat-label>Años</mat-label>
-            <mat-select class="w-100" [(ngModel)]="selectedYears" multiple (selectionChange)="filterActivePrinciplesDetail()">
-              <mat-option *ngFor="let year of yearOptions" [value]="year">
-                {{ year }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-
+          <!-- Filtro de Estado Abastecimiento -->
+          <div class="col-12 col-md-3">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Años</mat-label>
+              <mat-select class="w-100" [(ngModel)]="selectedStatuses" multiple (selectionChange)="filterPrinciples()">
+                <mat-option *ngFor="let year of yearOptions" [value]="year">
+                  {{ year }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
           <!-- Botón de descarga -->
           <div class="col-8 col-md-3">
             <button class="btn w-100 custom-btn" (click)="openDownloadDialog()">Descargar reporte</button>
@@ -84,8 +82,8 @@
                   <mat-form-field appearance="fill" class="w-100">
                     <mat-label>Estado Abastecimiento</mat-label>
                     <mat-select class="w-100" [(ngModel)]="selectedStatuses" multiple
-                      (selectionChange)="filterActivePrinciplesDetail()">
-                      <mat-option *ngFor="let status of abastOptions" [value]="status">
+                      (selectionChange)="filterPrinciples()">
+                      <mat-option *ngFor="let status of abastecimientoOptions" [value]="status">
                         {{ status }}
                       </mat-option>
                     </mat-select>
@@ -97,7 +95,7 @@
                   <mat-form-field appearance="fill" class="w-100">
                     <mat-label>Forma Farmacéutica</mat-label>
                     <mat-select class="w-100" [(ngModel)]="selectedPharmaceuticalForms" multiple
-                      (selectionChange)="filterActivePrinciplesDetail()">
+                      (selectionChange)="filterPrinciples()">
                       <mat-option *ngFor="let form of pharmaceuticalFormOptions" [value]="form">
                         {{ form }}
                       </mat-option>
@@ -110,7 +108,7 @@
                   <mat-form-field appearance="fill" class="w-100">
                     <mat-label>Código ATC</mat-label>
                     <mat-select class="w-100" [(ngModel)]="selectedAtcCodes" multiple
-                      (selectionChange)="filterActivePrinciplesDetail()">
+                      (selectionChange)="filterPrinciples()">
                       <mat-option *ngFor="let atc of atcCodeOptions" [value]="atc">
                         {{ atc }}
                       </mat-option>
@@ -131,23 +129,23 @@
     </mat-card>
 
     <!-- Cards -->
-    <div class="row g-4 mt-2" *ngIf="!isLoading && filteredActivePrinciplesDetail.length > 0; else noProductos">
-      <div class="col-md-6" *ngFor="let detail of filteredActivePrinciplesDetail">
+    <div class="row g-4 mt-2" *ngIf="!isLoading && filteredPrinciples.length > 0; else noProductos">
+      <div class="col-md-6" *ngFor="let principle of filteredPrinciples">
         <div class="flip-card">
           <div class="flip-card-inner">
             <!-- Parte frontal de la tarjeta -->
-            <div class="flip-card-front" [ngClass]="getCardClass(detail.abastStatusFK.statusAbastName)">
+            <div class="flip-card-front" [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
               <mat-card-content class="flip-card-content">
                 <div>
                   <!-- Check if principle.abastStatusFK is defined -->
-                  <div *ngIf="detail.abastStatusFK.statusAbastName">
-                    <img [src]="getImageClass(detail.abastStatusFK.statusAbastName)" alt="Status Image"
+                  <div *ngIf="principle.abastStatusFK.statusAbastName">
+                    <img [src]="getImageClass(principle.abastStatusFK.statusAbastName)" alt="Status Image"
                       class="mt-5" />
                   </div>
                   <div class="card-img-overlay mt-3">
-                    <mat-card-title>{{ detail.activePrincipleFK.activePrincipleName }} {{
-                      detail.activePrincipleFK.concentration }}
-                      {{detail.activePrincipleFK.pharmaceuticalFormFK.pharmaceuticalFormName}}</mat-card-title>
+                    <mat-card-title>{{ principle.activePrincipleFK.activePrincipleName }} {{
+                      principle.activePrincipleFK.concentration }}
+                      {{principle.activePrincipleFK.pharmaceuticalFormFK.pharmaceuticalFormName}}</mat-card-title>
                   </div>
                 </div>
               </mat-card-content>
@@ -156,29 +154,29 @@
 
             <!-- Parte trasera de la tarjeta -->
             <div class="flip-card-back list-group">
-              <div [ngClass]="getCardClass(detail.abastStatusFK.statusAbastName)">
-                <a [routerLink]="['/seeprinciple', detail.id]" class="list-group-item list-group-item-action">
+              <div [ngClass]="getCardClass(principle.abastStatusFK.statusAbastName)">
+                <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h3 class="mb-1 fw-bold">Descripción ATC</h3>
                   </div>
-                  <p class="mb-1">{{ detail.activePrincipleFK.atcDescription || 'Sin expediente' }}</p>
+                  <p class="mb-1">{{ principle.activePrincipleFK.atcDescription || 'Sin expediente' }}</p>
                 </a>
 
-                <a [routerLink]="['/seeprinciple', detail.id]" class="list-group-item list-group-item-action">
+                <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h3 class="mb-1 fw-bold">Estado de abastecimiento</h3>
                   </div>
-                  <p class="mb-1">{{ detail.abastStatusFK.statusAbastName || 'Sin estado' }}</p>
+                  <p class="mb-1">{{ principle.abastStatusFK.statusAbastName || 'Sin estado' }}</p>
                 </a>
 
-                <a [routerLink]="['/seeprinciple', detail.id]" class="list-group-item list-group-item-action">
+                <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h3 class="mb-1 fw-bold">Codigo ATC</h3>
                   </div>
-                  <p class="mb-1">{{ detail.activePrincipleFK.atcCode || 'Sin código' }}</p>
+                  <p class="mb-1">{{ principle.activePrincipleFK.atcCode || 'Sin código' }}</p>
                 </a>
 
-                <a [routerLink]="['/seeprinciple', detail.id]" class="list-group-item list-group-item-action">
+                <a [routerLink]="['/seeprinciple', principle.id]" class="list-group-item list-group-item-action">
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1 fw-bold">Información importante</h5>
                   </div>
@@ -208,14 +206,9 @@
       </ng-template>
     </div>
     <div class="d-flex justify-content-center mt-5 b">
-      <mat-paginator 
-      [length]="filteredActivePrinciplesDetail.length" 
-      [pageSize]="pageSize" 
-      [pageSizeOptions]="[5, 10, 25, 100]" 
-      (page)="onPageChange($event)" 
-      aria-label="Seleccionar página"
-      class="bg-light">
-    </mat-paginator>    
+      <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Seleccionar página"
+        class="bg-light">
+      </mat-paginator>
     </div>
   </div>
 </div>

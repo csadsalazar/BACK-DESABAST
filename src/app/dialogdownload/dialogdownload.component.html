@@ -3,48 +3,26 @@
   <p>En el presente apartado se encontrarán los filtros de descarga de Excel.</p>
 
   <!-- Filtro de Principios Activos -->
-<div class="filter-group">
-  <p class="filter-description">Seleccione un principio activo para limitar los resultados.</p>
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Principios Activos</mat-label>
-    <mat-select [(ngModel)]="selectedPrinciples" multiple>
-      <mat-option *ngFor="let principle of principles" [value]="principle">{{ principle }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+  <div class="filter-group">
+    <p class="filter-description">Seleccione un principio activo para limitar los resultados.</p>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Principios Activos</mat-label>
+      <mat-select [(ngModel)]="selectedNames" multiple>
+        <mat-option *ngFor="let name of names" [value]="name">{{ name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-<!-- Filtro de Estado de Abastecimiento -->
-<div class="filter-group">
-  <p class="filter-description">Seleccione un estado de abastecimiento para limitar los resultados.</p>
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Estado de abastecimiento</mat-label>
-    <mat-select [(ngModel)]="selectedStatuses" multiple>
-      <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-
-<!-- Filtro de Mes -->
-<div class="filter-group">
-  <p class="filter-description">Seleccione un mes de interes para limitar los resultados.</p>
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Mes</mat-label>
-    <mat-select [(ngModel)]="selectedMonths" multiple>
-      <mat-option *ngFor="let month of months" [value]="month">{{ month }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
-
-<!-- Filtro de Año -->
-<div class="filter-group">
-  <p class="filter-description">Seleccione un año de interes para limitar los resultados.</p>
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Año</mat-label>
-    <mat-select [(ngModel)]="selectedYears" multiple>
-      <mat-option *ngFor="let year of years" [value]="year">{{ year }}</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+  <!-- Filtro de Principios Activos -->
+  <div class="filter-group">
+    <p class="filter-description">Seleccione un estado de abastecimiento para limitar los resultados.</p>
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Estado de abastecimiento</mat-label>
+      <mat-select [(ngModel)]="selectedAbastStatuses" multiple>
+        <mat-option *ngFor="let status of statuses" [value]="status">{{ status }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
   <!-- Filtro ATC en sección expandible -->
   <mat-accordion>
@@ -58,9 +36,9 @@
         <mat-label>Filtrar por ATC</mat-label>
         <p class="filter-description">Seleccione un ATC para refinar su búsqueda.</p>
         <mat-form-field appearance="fill" class="full-width">
-          <mat-label>Codigo ATC</mat-label>
-          <mat-select [(ngModel)]="selectedCodes" multiple>
-            <mat-option *ngFor="let code of codes" [value]="code">{{ code }}</mat-option>
+          <mat-label>Código ATC</mat-label>
+          <mat-select [(ngModel)]="selectedAtcCodes" multiple>
+            <mat-option *ngFor="let atcCode of atcCodes" [value]="atcCode">{{ atcCode }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -72,5 +50,5 @@
 <mat-dialog-actions align="center">
   <button mat-button mat-dialog-close>Cancelar</button>
   <button mat-button (click)="clearFilters()">Limpiar Filtros</button>
-  <button mat-button (click)="downloadExcel()">Descargar Excel</button>
+ <!-- <button mat-button (click)="downloadReport()">Descargar Excel</button> -->
 </mat-dialog-actions>

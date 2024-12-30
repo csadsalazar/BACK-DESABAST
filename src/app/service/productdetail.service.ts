@@ -5,7 +5,7 @@ import { productChannelDetail } from './productchanneldetail.service';
 import { activePrincipleDetail } from './activeprincipledetail.service';
 import { product } from './product.service';
 
-export interface detail {
+export interface productDetail {
   id: number;
   filed: number;
   auto: number;
@@ -13,25 +13,24 @@ export interface detail {
   filedDate: Date;
   autoDate: Date;
   autoContDate: Date;
-  currentStatusRS: string;
-  institutionalChannelFK: productChannelDetail;
-  comertialChannelFK: productChannelDetail;
-  activePrincipleDetailFK: activePrincipleDetail;
-  productFK: product;
+  institutionalChannelFK: productChannelDetail[];
+  comertialChannelFK: productChannelDetail[];
+  activePrincipleDetailFK: activePrincipleDetail[];
+  producFK: product[];
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class DetailService {
+export class ProductDetailService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/detail';
 
-  list(): Observable<detail[]> {
-    return this.http.get<detail[]>(`${this.apiUrl}/find`);
+  list(): Observable<productDetail[]> {
+    return this.http.get<productDetail[]>(`${this.apiUrl}/find`);
   }
 
-  get(id: number): Observable<detail> {
-    return this.http.get<detail>(`${this.apiUrl}/find/${id}`);
+  get(id: number): Observable<productDetail> {
+    return this.http.get<productDetail>(`${this.apiUrl}/find/${id}`);
   }
 }
