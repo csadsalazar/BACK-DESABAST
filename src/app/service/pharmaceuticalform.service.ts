@@ -21,4 +21,8 @@ export class PharmaceuticalFormService {
   get(id: number): Observable<pharmaceuticalForm> {
     return this.http.get<pharmaceuticalForm>(`${this.apiUrl}/find/${id}`);
   }
+
+  getDistinctForms(): Observable<string[]> {
+    return this.http.get<string[]>(`${this.apiUrl}/forms`);
+  }
 }
